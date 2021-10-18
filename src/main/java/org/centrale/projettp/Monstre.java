@@ -54,5 +54,9 @@ public class Monstre extends Creature{
         this.pos.setX(x);
         this.pos.setY(y);
     }
-
+    public String creerSauvegarde() {
+        String texte = String.format("%d %d ", ptVie, pourcentageAtt);
+        texte += String.format("%d %d", pourcentagePar, degAtt);
+        return texte;
+    }
 }

@@ -12,15 +12,34 @@ import java.util.*;
  * @author zgchung uble
  */
 public class World4 {
-    // added a test comment
+    
     //attributs
     
     HashMap<Integer, Creature> listCreature; 
     HashMap<Integer, Objet> listObjet; 
+    Integer mondeLongueur;
+    Integer mondeLargeur;
+
+    public Integer getMondeLongueur() {
+        return mondeLongueur;
+    }
+
+    public void setMondeLongueur(Integer mondeLongueur) {
+        this.mondeLongueur = mondeLongueur;
+    }
+
+    public Integer getMondeLargeur() {
+        return mondeLargeur;
+    }
+
+    public void setMondeLargeur(Integer mondeLargeur) {
+        this.mondeLargeur = mondeLargeur;
+    }
+    
     
     Random generateurAleatoire = new Random();
     //methodes
-    public World4(int nbArcher, int nbPaysan, int nbLapin, int nbGuerrier, int nbMage, int nbLoup, int nbPotion){
+    public World4(int nbArcher, int nbPaysan, int nbLapin, int nbGuerrier, int nbMage, int nbLoup, int nbPotion, int mondeLongueur, int mondeLargeur){
         // créer les arrayLists
         this.listCreature = new HashMap<Integer, Creature>();
         this.listObjet= new HashMap<Integer, Objet>(); 

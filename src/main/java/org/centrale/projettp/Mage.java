@@ -92,5 +92,8 @@ public class Mage extends Personnage implements TypeBonus{
         this.ptMana = this.ptMana + 100;
         this.distAttMax = this.distAttMax + 50;
     }
-
+    public String creerSauvegarde() {
+        return "Mage " + super.creerSauvegarde();
+    }
+    
 }

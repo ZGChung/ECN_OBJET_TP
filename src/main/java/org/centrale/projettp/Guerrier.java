@@ -92,4 +92,7 @@ public class Guerrier extends Personnage implements TypeBonus{
         this.ptMana = this.ptMana + 10;
         this.distAttMax = this.distAttMax + 10;
     }
+    public String creerSauvegarde() {
+        return "Guerrier " + super.creerSauvegarde();
+    }
 }

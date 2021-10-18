@@ -44,5 +44,7 @@ public class Paysan extends Personnage implements TypeBonus{
         this.ptMana = this.ptMana + 0;
         this.distAttMax = this.distAttMax + 0;
     }
-    
+    public String creerSauvegarde() {
+        return "Paysan " + super.creerSauvegarde();
+    }
 }

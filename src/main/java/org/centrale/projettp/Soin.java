@@ -30,4 +30,9 @@ public class Soin extends Potion{
             System.out.println("Pas de potion sur cette case");
         }
     }
+    
+    public String creerSauvegarde() {
+        
+        return "Soin " + super.creerSauvegarde();
+    }
 }

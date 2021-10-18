@@ -62,4 +62,7 @@ public class Archer extends Personnage implements TypeBonus{
         this.ptMana = this.ptMana + 50;
         this.distAttMax = this.distAttMax + 100;
     }
+    public String creerSauvegarde() {
+        return "Archer " + super.creerSauvegarde();
+    }
 }

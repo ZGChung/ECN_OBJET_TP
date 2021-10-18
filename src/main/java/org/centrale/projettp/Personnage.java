@@ -172,5 +172,10 @@ public class Personnage extends Creature {
         //System.out.println("Methode malAffiche()");
         malAffiche();
     }
-    
+    public String creerSauvegarde() {
+        String texte = String.format("%s %d %d %d ", nom, ptVie, ptMana, pourcentageAtt);
+        texte += String.format("%d %d %d ", pourcentagePar, pourcentageMag, pourcentageResistMag);
+        texte += String.format("%d %d %d ", degAtt, degMag, distAttMax);
+        return texte + super.creerSauvegarde();
+    }
 }

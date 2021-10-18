@@ -228,4 +228,10 @@ public class Creature implements Deplacable {
             System.out.println("vous n'avez pas la portée d'une attaque corps à corps");
         }
     }
+    
+    public String creerSauvegarde() {
+        String texte = String.format("%d ", this.getPtPar());
+        texte+= String.format("%d %d", this.getPos().getX(), this.getPos().getY());
+        return texte;
+    }
 }

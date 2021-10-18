@@ -28,5 +28,8 @@ public class Lapin extends Monstre{
     public Lapin(Lapin l){
         super((Monstre)l);
     }
+    public String creerSauvegarde() {
+        return "Lapin " + super.creerSauvegarde();
+    }
     
 }
