@@ -58,4 +58,9 @@ public class Potion extends Objet {
         System.out.println("Le point de cette potion est:"+this.pt);
     }
     
+    public String creerSauvegarde() {
+        String texte = String.format("%d ", this.getPt());
+        texte+= String.format("%d %d", this.getPos().getX(), this.getPos().getY());
+        return texte;
+    }
 }

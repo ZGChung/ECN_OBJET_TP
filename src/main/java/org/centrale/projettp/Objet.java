@@ -10,5 +10,8 @@ package org.centrale.projettp;
  * @author uble
  */
 public class Objet {
-    
+    public String creerSauvegarde() {
+        String texte = null;
+        return texte;
+    }
 }

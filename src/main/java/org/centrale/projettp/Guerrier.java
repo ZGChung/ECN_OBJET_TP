@@ -12,84 +12,66 @@ import java.util.Random;
  * @author zgchung
  * @version 1.0
  */
-public class Guerrier extends Personnage implements TypeBonus{
+public class Guerrier extends Personnage implements Combattant{
     //attributs
     
     //constructeurs
+
+    /**
+     *
+     * @param nom
+     * @param ptV
+     * @param ptM
+     * @param pA
+     * @param pP
+     * @param pM
+     * @param rM
+     * @param dA
+     * @param dM
+     * @param distMax
+     * @param ptP
+     * @param pos
+     * @param nbF
+     */
     public Guerrier(String nom, int ptV, int ptM, int pA, int pP, 
         int pM, int rM, int dA, int dM, int distMax, int ptP, Point2D pos,int nbF){
         super(nom, ptV,ptM, pA,pP, 
             pM, rM, dA, dM, ptP, distMax, pos);
     }
+
+    /**
+     * guerrier de base
+     */
     public Guerrier(){
         super();
     }
+
+    /**
+     *copie d'un guerrier
+     * @param g
+     */
     public Guerrier(Guerrier g){
         super((Personnage)g);
     }
-    //setters & getters
+    //setters
+    
+    //getter
+    
+    //methodes
 
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public int getPtMana() {
-        return ptMana;
-    }
-
-    public void setPtMana(int ptMana) {
-        this.ptMana = ptMana;
-    }
-
-    public int getPourcentageMag() {
-        return pourcentageMag;
-    }
-
-    public void setPourcentageMag(int pourcentageMag) {
-        this.pourcentageMag = pourcentageMag;
-    }
-
-    public int getPourcentageResistMag() {
-        return pourcentageResistMag;
-    }
-
-    public void setPourcentageResistMag(int pourcentageResistMag) {
-        this.pourcentageResistMag = pourcentageResistMag;
-    }
-
-    public int getDegMag() {
-        return degMag;
-    }
-
-    public void setDegMag(int degMag) {
-        this.degMag = degMag;
-    }
-
-    public int getDistAttMax() {
-        return distAttMax;
-    }
-
-    public void setDistAttMax(int distAttMax) {
-        this.distAttMax = distAttMax;
-    }
-
-    public Random getGenerateurAleatoire() {
-        return generateurAleatoire;
-    }
-
-    public void setGenerateurAleatoire(Random generateurAleatoire) {
-        this.generateurAleatoire = generateurAleatoire;
+    /**
+     *Combat qui reprend un super
+     * @param c
+     */
+    @Override
+    public void combattre(Creature c){
+        super.combattre(c);
     }
     
     
     //methodes
-    public void setTypeBonus(){
-        this.ptVie = this.ptVie + 100;
-        this.ptMana = this.ptMana + 10;
-        this.distAttMax = this.distAttMax + 10;
+    
+    public String creerSauvegarde() {
+        return "Guerrier " + super.creerSauvegarde();
     }
 }
