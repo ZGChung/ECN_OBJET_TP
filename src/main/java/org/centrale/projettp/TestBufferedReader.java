@@ -19,18 +19,16 @@ public class TestBufferedReader {
     lecture();
   }
 
-  public static void main(String args[]) {
-    TestBufferedReader testBufferedReader = new TestBufferedReader("source.txt");
-  }
-
-  private void lecture() {
+  public void lecture() {
     try {
       String ligne;
       BufferedReader fichier = new BufferedReader(new FileReader(source));
       ligne = fichier.readLine();
+
       while (ligne != null) {
         System.out.println(ligne);
         ligne = fichier.readLine();
+
       }
 
       fichier.close();
