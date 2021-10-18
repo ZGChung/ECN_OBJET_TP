@@ -5,13 +5,14 @@
  */
 package org.centrale.projettp;
 
+import java.util.Random;
 /**
  *
  * class de Archer, sous class de Personnage
  * @version 1.0
  * @author uble
  */
-public class Archer extends Personnage implements TypeBonus{
+public class Archer extends Personnage {
     //Attributs
     private int nbFleches;
     /**
@@ -57,12 +58,33 @@ public class Archer extends Personnage implements TypeBonus{
         System.out.println("-----------");
     }
     
-    public void setTypeBonus(){
-        this.ptVie = this.ptVie + 50;
-        this.ptMana = this.ptMana + 50;
-        this.distAttMax = this.distAttMax + 100;
-    }
+    
     public String creerSauvegarde() {
         return "Archer " + super.creerSauvegarde();
+    }
+    
+    @Override
+    public void combattre(Creature c){
+        if (this.getPos().distance(c.getPos())<=1){
+            System.out.println("vous n'avez pas la portée");
+        }
+        else if (this.pos.distance(c.pos)>(getDistAttMax()+0.5)){
+            System.out.println("vous n'avez pas la portée");
+        }
+        else{
+            if (this.getNbFleches()>0){
+                Random genAlea= new Random();
+                int rand = genAlea.nextInt(101);
+                if (rand>this.getPourcentageAtt()){
+                    System.out.println("Dans le mille, vous infligez "+this.getDegAtt()+" dégâts à l'adversaire");
+                    c.setPtVie(c.getPtVie()-this.getDegAtt());
+                }
+          
+            }
+            else {
+                System.out.println("Pas de flèches");
+            }
+            this.setNbFleches(this.getNbFleches()-1);
+        }
     }
 }

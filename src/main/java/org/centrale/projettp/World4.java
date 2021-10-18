@@ -17,8 +17,17 @@ public class World4 {
     
     HashMap<Integer, Creature> listCreature; 
     HashMap<Integer, Objet> listObjet; 
+    HashMap<Integer, Joueur> listJoueurs;
     Integer mondeLongueur;
     Integer mondeLargeur;
+
+    public HashMap<Integer, Joueur> getListJoueurs() {
+        return listJoueurs;
+    }
+
+    public void setListJoueurs(HashMap<Integer, Joueur> listJoueurs) {
+        this.listJoueurs = listJoueurs;
+    }
 
     public Integer getMondeLongueur() {
         return mondeLongueur;
@@ -39,7 +48,7 @@ public class World4 {
     
     Random generateurAleatoire = new Random();
     //methodes
-    public World4(int nbArcher, int nbPaysan, int nbLapin, int nbGuerrier, int nbMage, int nbLoup, int nbPotion, int mondeLongueur, int mondeLargeur){
+    public World4(int nbArcher, int nbPaysan, int nbLapin, int nbGuerrier, int nbMage, int nbLoup, int nbPotion, int mondeLongueur, int mondeLargeur, int nbJoueur){
         // créer les arrayLists
         this.listCreature = new HashMap<Integer, Creature>();
         this.listObjet= new HashMap<Integer, Objet>(); 
@@ -76,9 +85,18 @@ public class World4 {
         for (int i  = 0 ; i < nbPotion; i ++){
             listObjet.put(longeur2+i, new Potion());
         }
-        // générer les créatures au hasard
         
+        int longeur3 = this.listJoueurs.size();
+        for (int i  = 0 ; i < nbJoueur; i ++){
+            listJoueurs.put(longeur3+i, new Joueur());
+        }
+        // générer les créatures au hasard
+        this.mondeLargeur= mondeLargeur;
+        this.mondeLongueur = mondeLongueur;
     }
+    
+    
+    
 
     public void tourDeJeu(){
         System.out.println("Jsp la fonctionnalité de cette méthode...");

@@ -14,6 +14,7 @@ import java.lang.reflect.Constructor;
  * Constructeurs, setters, getters
  * @version 1.0
  * @author zgchung
+ * @param <T>
  */
 public class Joueur<T extends Personnage> {
     // attributs
@@ -129,5 +130,7 @@ public class Joueur<T extends Personnage> {
         // changer le range des nombres aléatoires
         
     }
-    
+    public String creerSauvegarde() {
+        return "Joueur" + perso.creerSauvegarde();
+    }
 }

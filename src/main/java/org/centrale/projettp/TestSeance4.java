@@ -16,7 +16,7 @@ public class TestSeance4 {
          
          
          // creer un monde
-         World4 monde4 = new World4(2,2,2,2,2,2,2,50,50);
+         World4 monde4 = new World4(2,2,2,2,2,2,2,50,50,3);
          SauvegardePartie save = new SauvegardePartie("sauve1");
          save.sauvegarderPartie(monde4);
          
