@@ -16,7 +16,9 @@ public class TestSeance4 {
          
          
          // creer un monde
-         World4 monde4 = new World4(2,2,2,2,2,2,2,50,50,3);
+         World2 monde4 = new World2(200,200);
+         monde4.creeMondeAlea(20, 5, 3);
+         monde4.afficheMonde();
          SauvegardePartie save = new SauvegardePartie("sauve1");
          save.sauvegarderPartie(monde4);
          
