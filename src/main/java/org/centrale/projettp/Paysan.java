@@ -10,7 +10,7 @@ package org.centrale.projettp;
  * @version 1.0
  * @author uble
  */
-public class Paysan extends Personnage implements TypeBonus{
+public class Paysan extends Personnage{
 /**
      * Construteur avec tous les parametres
      * @param nom   nom du personnage
@@ -23,6 +23,7 @@ public class Paysan extends Personnage implements TypeBonus{
      * @param dA    distance attaque physique
      * @param dM    distance attaque magique
      * @param distMax   distance attaque maximum
+     * @param ptP
      * @param pos   position
      */
     public Paysan(String nom, int ptV, int ptM, int pA, int pP, 
@@ -30,19 +31,25 @@ public class Paysan extends Personnage implements TypeBonus{
         super(nom, ptV,ptM, pA,pP, 
             pM, rM, dA, dM, distMax, ptP, pos);
     }
+
+    /**
+     *Constructeur vide
+     */
     public Paysan(){
         super();
     }
+
+    /**
+     *Copie d'un paysan
+     * @param p
+     */
     public Paysan(Paysan p){
         super((Personnage)p);
     }
-    
     //getters and setters -> empty 
     //methodes
-    public void setTypeBonus(){
-        this.ptVie = this.ptVie + 0;
-        this.ptMana = this.ptMana + 0;
-        this.distAttMax = this.distAttMax + 0;
-    }
     
+    public String creerSauvegarde() {
+        return "Paysan " + super.creerSauvegarde();
+    }
 }

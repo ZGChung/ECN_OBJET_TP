@@ -13,36 +13,58 @@ import java.util.*;
  * @author uble, zgchung
  */
 public class World2 {
-    protected LinkedList<Personnage> listePerso;
-    protected LinkedList<Monstre> listeMonstre;
-    protected LinkedList<Potion> listePotion;
-    protected int tailleMonde;
+    HashMap<Integer, Creature> listCreature; 
+    HashMap<Integer, Objet> listObjet; 
+    HashMap<Integer, Joueur> listJoueurs;
+    Integer mondeLongueur;
+    Integer mondeLargeur;
+    public Creature[][] tabCreature;
+    public String[][] map;
     
     Random generateurAleatoire = new Random();
 
+    public Integer getMondeLongueur() {
+        return mondeLongueur;
+    }
+
+    public void setMondeLongueur(Integer mondeLongueur) {
+        this.mondeLongueur = mondeLongueur;
+    }
+
+    public Integer getMondeLargeur() {
+        return mondeLargeur;
+    }
+
+    public void setMondeLargeur(Integer mondeLargeur) {
+        this.mondeLargeur = mondeLargeur;
+    }
+
     /**
      *constructeur avec listes
-     * @param listePerso
-     * @param listePotion
-     * @param listeMonstre
      * @param tailleMonde
      */
-    public World2(LinkedList<Personnage> listePerso, LinkedList<Potion> listePotion,LinkedList<Monstre> listeMonstre, int tailleMonde) {
-        this.listePerso = listePerso;
-        this.listeMonstre = listeMonstre;
-        this.listePotion = listePotion;
-        this.tailleMonde = tailleMonde;
+    public World2(HashMap<Integer, Creature> listCreature, HashMap<Integer, Objet> listObjet,HashMap<Integer, Joueur> listJoueurs, int longueur, int largeur) {
+        this.listCreature = listCreature;
+        this.listObjet = listObjet;
+        this.listJoueurs = listJoueurs;
+        this.mondeLongueur = longueur;
+        this.mondeLargeur = largeur;
+        this.tabCreature = new Creature[longueur][largeur];
+        this.map = new String[longueur][largeur];
     }
     
     /**
      *constructeur listes vides
      * @param tailleMonde
      */
-    public World2(int tailleMonde) {
-        this.listePerso = new LinkedList<>();
-        this.listePotion = new LinkedList<>();
-        this.listeMonstre = new LinkedList<>();
-        this.tailleMonde = tailleMonde;
+    public World2(int longueur, int largeur) {
+        this.listCreature = new HashMap<>();
+        this.listObjet = new HashMap<>();
+        this.listJoueurs = new HashMap<>();
+        this.mondeLongueur = longueur;
+        this.mondeLargeur = largeur;
+        this.tabCreature = new Creature[longueur][largeur];
+        this.map = new String[longueur][largeur];
     }
     
     /**
@@ -69,114 +91,155 @@ public class World2 {
      */
     public void creeMondeAlea(int nbPerso, int nbMonstre, int nbPotion){
         //On crée 20% de chaque perso et 50% de chaque Monstre pour avoir un monde équilibré
-        List<Point2D> listCreated;
-        listCreated = new ArrayList<>();
         Point2D ptTemp = new Point2D();
         for(int i = 0; i < Math.round(nbPerso*0.2); i++){
-            Archer archer = new Archer();
+            Archer crea = new Archer();
             
             ptTemp.Affiche();
             
-            Point2D a = new Point2D(archer.getPos().getX(),
-                archer.getPos().getY());
+            Point2D a = new Point2D(crea.getPos().getX(),
+                crea.getPos().getY());
             // si la distance est trop grande, on refaire le generation du nombre aleatoir
 
-            while(a.distance(ptTemp)>5 || this.estSuperpose(a, listCreated)){
+            while(crea.getPos().getX()<0 || crea.getPos().getX()>mondeLongueur || crea.getPos().getY()<0 
+                    || crea.getPos().getY()>mondeLargeur || a.distance(ptTemp)>5 
+                    || tabCreature[crea.getPos().getX()][crea.getPos().getY()] != null){
                 // regenerer une position
                 
-                a.SetPosition(generateurAleatoire.nextInt(tailleMonde),generateurAleatoire.nextInt(tailleMonde));
+                a.SetPosition(generateurAleatoire.nextInt(mondeLongueur),generateurAleatoire.nextInt(mondeLargeur));
                 // parcourir tous les positions generees
             }
 
-            archer.setPos(a);
-            listePerso.add(archer);
-            listCreated.add(archer.getPos());
-            ptTemp=archer.getPos();
+            crea.setPos(a);
+            listCreature.put(listCreature.size()+i,crea);
+            tabCreature[crea.getPos().getX()][crea.getPos().getY()] = crea;
+            map[crea.getPos().getX()][crea.getPos().getY()] = "A";
+            ptTemp=crea.getPos();
             
         }
         for(int i = 0; i < Math.round(nbPerso*0.2); i++){
-            Paysan pay = new Paysan();
+            Paysan crea = new Paysan();
             
-            Point2D a = new Point2D(pay.getPos().getX(),
-                pay.getPos().getY());
+            ptTemp.Affiche();
             
-            while(a.distance(ptTemp)>3 || this.estSuperpose(a, listCreated)){
-            // regenerer une position
-                a.SetPosition(generateurAleatoire.nextInt(tailleMonde),generateurAleatoire.nextInt(tailleMonde));
-            // parcourir tous les positions generees
+            Point2D a = new Point2D(crea.getPos().getX(),
+                crea.getPos().getY());
+            // si la distance est trop grande, on refaire le generation du nombre aleatoir
+
+            while(crea.getPos().getX()<0 || crea.getPos().getX()>mondeLongueur || crea.getPos().getY()<0 
+                    || crea.getPos().getY()>mondeLargeur || a.distance(ptTemp)>5 
+                    || tabCreature[crea.getPos().getX()][crea.getPos().getY()] != null){
+                // regenerer une position
+                
+                a.SetPosition(generateurAleatoire.nextInt(mondeLongueur),generateurAleatoire.nextInt(mondeLargeur));
+                // parcourir tous les positions generees
             }
-            pay.setPos(a);
-            ptTemp = pay.pos;
-            listePerso.add(pay);
-            listCreated.add(ptTemp);
+
+            crea.setPos(a);
+            listCreature.put(listCreature.size()+i,crea);
+            tabCreature[crea.getPos().getX()][crea.getPos().getY()] = crea;
+            map[crea.getPos().getX()][crea.getPos().getY()] = "P";
+            ptTemp=crea.getPos();
             
         }
         for(int i = 0; i < Math.round(nbPerso*0.2); i++){
-            Mage pay = new Mage();
+            Mage crea = new Mage();
             
-            Point2D a = new Point2D(pay.getPos().getX()+generateurAleatoire.nextInt(3),
-                pay.getPos().getY()+generateurAleatoire.nextInt(3));
+            ptTemp.Affiche();
             
-            while(a.distance(ptTemp)>3 || this.estSuperpose(a, listCreated)){
-            // regenerer une position
-            a.SetPosition(generateurAleatoire.nextInt(tailleMonde),generateurAleatoire.nextInt(tailleMonde));
-            // parcourir tous les positions generees
+            Point2D a = new Point2D(crea.getPos().getX(),
+                crea.getPos().getY());
+            // si la distance est trop grande, on refaire le generation du nombre aleatoir
+
+            while(crea.getPos().getX()<0 || crea.getPos().getX()>mondeLongueur || crea.getPos().getY()<0 
+                    || crea.getPos().getY()>mondeLargeur || a.distance(ptTemp)>5 
+                    || tabCreature[crea.getPos().getX()][crea.getPos().getY()] != null){
+                // regenerer une position
+                
+                a.SetPosition(generateurAleatoire.nextInt(mondeLongueur),generateurAleatoire.nextInt(mondeLargeur));
+                // parcourir tous les positions generees
             }
-            pay.setPos(a);
-            ptTemp = pay.pos;
-            listePerso.add(pay);
-            listCreated.add(ptTemp);
+
+            crea.setPos(a);
+            listCreature.put(listCreature.size()+i,crea);
+            tabCreature[crea.getPos().getX()][crea.getPos().getY()] = crea;
+            map[crea.getPos().getX()][crea.getPos().getY()] = "M";
+            ptTemp=crea.getPos();
             
         }
         for(int i = 0; i < Math.round(nbPerso*0.2); i++){
-            Guerrier pay = new Guerrier();
+            Guerrier crea = new Guerrier();
             
-            Point2D a = new Point2D(pay.getPos().getX()+generateurAleatoire.nextInt(3),
-                pay.getPos().getY()+generateurAleatoire.nextInt(3));
+            ptTemp.Affiche();
             
-            while(a.distance(ptTemp)>3 || this.estSuperpose(a, listCreated)){
-            // regenerer une position
-            a.SetPosition(generateurAleatoire.nextInt(tailleMonde),generateurAleatoire.nextInt(tailleMonde));
-            // parcourir tous les positions generees
+            Point2D a = new Point2D(crea.getPos().getX(),
+                crea.getPos().getY());
+            // si la distance est trop grande, on refaire le generation du nombre aleatoir
+
+            while(crea.getPos().getX()<0 || crea.getPos().getX()>mondeLongueur || crea.getPos().getY()<0 
+                    || crea.getPos().getY()>mondeLargeur || a.distance(ptTemp)>5 
+                    || tabCreature[crea.getPos().getX()][crea.getPos().getY()] != null){
+                // regenerer une position
+                
+                a.SetPosition(generateurAleatoire.nextInt(mondeLongueur),generateurAleatoire.nextInt(mondeLargeur));
+                // parcourir tous les positions generees
             }
-            pay.setPos(a);
-            ptTemp = pay.pos;
-            listePerso.add(pay);
-            listCreated.add(ptTemp);
+
+            crea.setPos(a);
+            listCreature.put(listCreature.size()+i,crea);
+            tabCreature[crea.getPos().getX()][crea.getPos().getY()] = crea;
+            map[crea.getPos().getX()][crea.getPos().getY()] = "G";
+            ptTemp=crea.getPos();
             
         }
         for(int i = 0; i < Math.round(nbPerso*0.5); i++){
-            Loup loup = new Loup();
+            Loup crea = new Loup();
             
-            Point2D a = new Point2D(loup.getPos().getX()+generateurAleatoire.nextInt(3),
-                loup.getPos().getY()+generateurAleatoire.nextInt(3));
+            ptTemp.Affiche();
             
-            while(a.distance(ptTemp)>3 || this.estSuperpose(a, listCreated)){
-            // regenerer une position
-            a.SetPosition(generateurAleatoire.nextInt(tailleMonde),generateurAleatoire.nextInt(tailleMonde));
-            // parcourir tous les positions generees
+            Point2D a = new Point2D(crea.getPos().getX(),
+                crea.getPos().getY());
+            // si la distance est trop grande, on refaire le generation du nombre aleatoir
+
+            while(crea.getPos().getX()<0 || crea.getPos().getX()>mondeLongueur || crea.getPos().getY()<0 
+                    || crea.getPos().getY()>mondeLargeur || a.distance(ptTemp)>5 
+                    || tabCreature[crea.getPos().getX()][crea.getPos().getY()] != null){
+                // regenerer une position
+                
+                a.SetPosition(generateurAleatoire.nextInt(mondeLongueur),generateurAleatoire.nextInt(mondeLargeur));
+                // parcourir tous les positions generees
             }
-            loup.setPos(a);
-            ptTemp = loup.pos;
-            listeMonstre.add(loup);
-            listCreated.add(ptTemp);
+
+            crea.setPos(a);
+            listCreature.put(listCreature.size()+i,crea);
+            tabCreature[crea.getPos().getX()][crea.getPos().getY()] = crea;
+            map[crea.getPos().getX()][crea.getPos().getY()] = "L";
+            ptTemp=crea.getPos();
             
         }
         for(int i = 0; i < nbPerso-Math.round(nbPerso*0.5); i++){
-            Lapin pay = new Lapin();
+            Lapin crea = new Lapin();
             
-            Point2D a = new Point2D(pay.getPos().getX()+generateurAleatoire.nextInt(3),
-                pay.getPos().getY()+generateurAleatoire.nextInt(3));
+            ptTemp.Affiche();
             
-            while(a.distance(ptTemp)>3 || this.estSuperpose(a, listCreated)){
-            // regenerer une position
-            a.SetPosition(generateurAleatoire.nextInt(tailleMonde),generateurAleatoire.nextInt(tailleMonde));
-            // parcourir tous les positions generees
+            Point2D a = new Point2D(crea.getPos().getX(),
+                crea.getPos().getY());
+            // si la distance est trop grande, on refaire le generation du nombre aleatoir
+
+            while(crea.getPos().getX()<0 || crea.getPos().getX()>mondeLongueur || crea.getPos().getY()<0 
+                    || crea.getPos().getY()>mondeLargeur || a.distance(ptTemp)>5 
+                    || tabCreature[crea.getPos().getX()][crea.getPos().getY()] != null){
+                // regenerer une position
+                
+                a.SetPosition(generateurAleatoire.nextInt(mondeLongueur),generateurAleatoire.nextInt(mondeLargeur));
+                // parcourir tous les positions generees
             }
-            pay.setPos(a);
-            ptTemp = pay.pos;
-            listeMonstre.add(pay);
-            listCreated.add(ptTemp);
+
+            crea.setPos(a);
+            listCreature.put(listCreature.size()+i,crea);
+            tabCreature[crea.getPos().getX()][crea.getPos().getY()] = crea;
+            map[crea.getPos().getX()][crea.getPos().getY()] = "L";
+            ptTemp=crea.getPos();
             
         }
     }
@@ -187,51 +250,28 @@ public class World2 {
     public void afficheMonde(){
         int i;
         System.out.println("Constitution du monde :");
-        System.out.println("Nombre de Personnages :");
-        System.out.println(listePerso.size());
-        System.out.println("Nombre de Monstres :");
-        System.out.println(listeMonstre.size());
+        System.out.println("Nombre de Créatures :");
+        System.out.println(listCreature.size());
         
-        String[][] grid = new String[tailleMonde][tailleMonde];
-        for(int k = 0; k < tailleMonde; k++){
-            for(int j = 0; j < tailleMonde; j++){
-                grid[k][j] = "          |";
+        
+        String[][] grid = new String[mondeLongueur][mondeLargeur];
+        for(int k = 0; k < mondeLongueur; k++){
+            for(int j = 0; j < mondeLargeur; j++){
+                if (map[k][j] == null){
+                    grid[k][j] = ".";
+                }
+                else{
+                    grid[k][j] = map[k][j];
+                }
             }
         }
-        for (i=0 ; i < listePerso.size(); i++){
-            grid[listePerso.get(i).pos.getX()][listePerso.get(i).pos.getY()] = "Perso"+i;
-        }
-        for (i=0 ; i < listeMonstre.size(); i++){
-            grid[listeMonstre.get(i).pos.getX()][listeMonstre.get(i).pos.getY()] = "paysan"+i;
-        }
-        
-        
-        for(int k = 0; k < tailleMonde; k++){
-            for(int j = 0; j < tailleMonde; j++){
+        for(int k = 0; k < 10; k++){
+            for(int j = 0; j < 10; j++){
                 System.out.print(grid[k][j]);
             }
             System.out.println("");
         }
-        System.out.println("-------** EN DETAILS **----------");
         
-        System.out.println("Nombre de Persos :");
-        System.out.println(listePerso.size());
-        for (i=0 ; i < listePerso.size(); i++){
-            System.out.println("-----------------------------------");
-            System.out.println("Ce perso fait partie du monde :");
-            
-            listePerso.get(i).affiche();
-            System.out.println("---------------****----------------");
-        }
-        System.out.println("Nombre de Monstres :");
-        System.out.println(listeMonstre.size());
-        for (i=0 ; i < listeMonstre.size(); i++){
-            System.out.println("-----------------------------------");
-            System.out.println("Ce monstre fait partie du monde :");
-            
-            listeMonstre.get(i).affiche();
-            System.out.println("---------------****----------------");
-        }
         
     }
 }

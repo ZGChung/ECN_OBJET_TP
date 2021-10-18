@@ -12,7 +12,7 @@ import java.util.Random;
  * @author zgchung
  * @version 2.0
  */
-public class Creature implements Deplacable {
+public abstract class Creature extends ElementDeJeu implements Deplacable {
     //attributs
     /**
      * point de vie
@@ -190,14 +190,8 @@ public class Creature implements Deplacable {
     /**
      * deplacer le protagonist au hasard
      */
-    public void deplace(){
-        Random generateurAleatoire = new Random();
-        pos.translate(-1+generateurAleatoire.nextInt(2),-1+generateurAleatoire.nextInt(2));
-    }
-    public void deplacer(int x, int y){
-        this.pos.setX(x);
-        this.pos.setY(y);
-    }
+    public abstract void deplacer();
+    
     /**
      * fonction de combattre
      * @param c 
@@ -227,5 +221,11 @@ public class Creature implements Deplacable {
         else{
             System.out.println("vous n'avez pas la portée d'une attaque corps à corps");
         }
+    }
+    
+    public String creerSauvegarde() {
+        String texte = String.format("%d ", this.getPtPar());
+        texte+= String.format("%d %d", this.getPos().getX(), this.getPos().getY());
+        return texte;
     }
 }
