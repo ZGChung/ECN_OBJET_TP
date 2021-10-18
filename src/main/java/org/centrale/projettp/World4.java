@@ -12,7 +12,7 @@ import java.util.*;
  * @author zgchung uble
  */
 public class World4 {
-    
+    // added a test comment
     //attributs
     
     HashMap<Integer, Creature> listCreature; 
