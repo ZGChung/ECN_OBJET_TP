@@ -96,13 +96,14 @@ public class Joueur<T extends Personnage> {
     public void choisirPersonnage(){
         Scanner sc= new Scanner(System.in); //standard input stream  
         System.out.println("Choisir votre personnage en tapant le nom du type: ");  
-        String str= "org.centrale.projettp5."+sc.nextLine();          //reads string
+        String str= "org.centrale.projettp."+sc.nextLine();          //reads string
         
         ArrayList<String> list = new ArrayList<String>();
         this.listPerso.forEach(i->{
             list.add(i.getClass().getName());
         });
         while (list.contains(str) == false){
+            System.out.println(str);
             System.out.println("Checkez votre input et reessayer, svp");
             str= sc.nextLine();          //reads string
         }
