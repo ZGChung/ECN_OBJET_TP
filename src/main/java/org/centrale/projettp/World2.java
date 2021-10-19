@@ -92,7 +92,10 @@ public class World2 {
     public void creeMondeAlea(int nbPerso, int nbMonstre, int nbPotion){
         //On crée 20% de chaque perso et 50% de chaque Monstre pour avoir un monde équilibré
         Point2D ptTemp = new Point2D();
+        Point2D zero = new Point2D();
+        zero.SetPosition(0, 0);
         for(int i = 0; i < Math.round(nbPerso*0.2); i++){
+            System.out.println("Archer" +i);
             Archer crea = new Archer();
             
             ptTemp.Affiche();
@@ -101,12 +104,13 @@ public class World2 {
                 crea.getPos().getY());
             // si la distance est trop grande, on refaire le generation du nombre aleatoir
 
-            while(crea.getPos().getX()<0 || crea.getPos().getX()>mondeLongueur || crea.getPos().getY()<0 
-                    || crea.getPos().getY()>mondeLargeur || a.distance(ptTemp)>5 
-                    || tabCreature[crea.getPos().getX()][crea.getPos().getY()] != null){
+            while(tabCreature[a.getX()][a.getY()] != null || a.distance(ptTemp)>5){
                 // regenerer une position
-                
+                System.out.println("Créa");
+                tabCreature[crea.getPos().getX()][crea.getPos().getY()].getPos().Affiche();
                 a.SetPosition(generateurAleatoire.nextInt(mondeLongueur),generateurAleatoire.nextInt(mondeLargeur));
+                System.out.println("Pos a");
+                a.Affiche();
                 // parcourir tous les positions generees
             }
 
@@ -118,6 +122,7 @@ public class World2 {
             
         }
         for(int i = 0; i < Math.round(nbPerso*0.2); i++){
+            System.out.println("Paysan" +i);
             Paysan crea = new Paysan();
             
             ptTemp.Affiche();
@@ -126,9 +131,7 @@ public class World2 {
                 crea.getPos().getY());
             // si la distance est trop grande, on refaire le generation du nombre aleatoir
 
-            while(crea.getPos().getX()<0 || crea.getPos().getX()>mondeLongueur || crea.getPos().getY()<0 
-                    || crea.getPos().getY()>mondeLargeur || a.distance(ptTemp)>5 
-                    || tabCreature[crea.getPos().getX()][crea.getPos().getY()] != null){
+            while(tabCreature[a.getX()][a.getY()] != null || a.distance(ptTemp)>5){
                 // regenerer une position
                 
                 a.SetPosition(generateurAleatoire.nextInt(mondeLongueur),generateurAleatoire.nextInt(mondeLargeur));
@@ -143,6 +146,7 @@ public class World2 {
             
         }
         for(int i = 0; i < Math.round(nbPerso*0.2); i++){
+            System.out.println("Mage" +i);
             Mage crea = new Mage();
             
             ptTemp.Affiche();
@@ -151,9 +155,7 @@ public class World2 {
                 crea.getPos().getY());
             // si la distance est trop grande, on refaire le generation du nombre aleatoir
 
-            while(crea.getPos().getX()<0 || crea.getPos().getX()>mondeLongueur || crea.getPos().getY()<0 
-                    || crea.getPos().getY()>mondeLargeur || a.distance(ptTemp)>5 
-                    || tabCreature[crea.getPos().getX()][crea.getPos().getY()] != null){
+            while(tabCreature[a.getX()][a.getY()] != null || a.distance(ptTemp)>5){
                 // regenerer une position
                 
                 a.SetPosition(generateurAleatoire.nextInt(mondeLongueur),generateurAleatoire.nextInt(mondeLargeur));
@@ -168,6 +170,7 @@ public class World2 {
             
         }
         for(int i = 0; i < Math.round(nbPerso*0.2); i++){
+            System.out.println("Guerrier" +i);
             Guerrier crea = new Guerrier();
             
             ptTemp.Affiche();
@@ -176,9 +179,7 @@ public class World2 {
                 crea.getPos().getY());
             // si la distance est trop grande, on refaire le generation du nombre aleatoir
 
-            while(crea.getPos().getX()<0 || crea.getPos().getX()>mondeLongueur || crea.getPos().getY()<0 
-                    || crea.getPos().getY()>mondeLargeur || a.distance(ptTemp)>5 
-                    || tabCreature[crea.getPos().getX()][crea.getPos().getY()] != null){
+            while(tabCreature[a.getX()][a.getY()] != null || a.distance(ptTemp)>5){
                 // regenerer une position
                 
                 a.SetPosition(generateurAleatoire.nextInt(mondeLongueur),generateurAleatoire.nextInt(mondeLargeur));
@@ -193,6 +194,7 @@ public class World2 {
             
         }
         for(int i = 0; i < Math.round(nbPerso*0.5); i++){
+            System.out.println("Loup" +i);
             Loup crea = new Loup();
             
             ptTemp.Affiche();
@@ -201,9 +203,7 @@ public class World2 {
                 crea.getPos().getY());
             // si la distance est trop grande, on refaire le generation du nombre aleatoir
 
-            while(crea.getPos().getX()<0 || crea.getPos().getX()>mondeLongueur || crea.getPos().getY()<0 
-                    || crea.getPos().getY()>mondeLargeur || a.distance(ptTemp)>5 
-                    || tabCreature[crea.getPos().getX()][crea.getPos().getY()] != null){
+            while(tabCreature[a.getX()][a.getY()] != null || a.distance(ptTemp)>5){
                 // regenerer une position
                 
                 a.SetPosition(generateurAleatoire.nextInt(mondeLongueur),generateurAleatoire.nextInt(mondeLargeur));
@@ -226,9 +226,7 @@ public class World2 {
                 crea.getPos().getY());
             // si la distance est trop grande, on refaire le generation du nombre aleatoir
 
-            while(crea.getPos().getX()<0 || crea.getPos().getX()>mondeLongueur || crea.getPos().getY()<0 
-                    || crea.getPos().getY()>mondeLargeur || a.distance(ptTemp)>5 
-                    || tabCreature[crea.getPos().getX()][crea.getPos().getY()] != null){
+            while(tabCreature[a.getX()][a.getY()] != null || a.distance(ptTemp)>5){
                 // regenerer une position
                 
                 a.SetPosition(generateurAleatoire.nextInt(mondeLongueur),generateurAleatoire.nextInt(mondeLargeur));
@@ -265,8 +263,8 @@ public class World2 {
                 }
             }
         }
-        for(int k = 0; k < 10; k++){
-            for(int j = 0; j < 10; j++){
+        for(int k = 0; k < mondeLongueur; k++){
+            for(int j = 0; j < mondeLargeur; j++){
                 System.out.print(grid[k][j]);
             }
             System.out.println("");
