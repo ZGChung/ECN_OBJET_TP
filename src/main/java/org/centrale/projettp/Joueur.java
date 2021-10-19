@@ -131,6 +131,6 @@ public class Joueur<T extends Personnage> {
     }
 
     public String creerSauvegarde() {
-        return "Joueur" + perso.creerSauvegarde();
+        return "Joueur " + perso.creerSauvegarde();
     }
 }
