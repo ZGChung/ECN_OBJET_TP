@@ -9,7 +9,7 @@ package org.centrale.projettp;
  *
  * @author uble
  */
-public class Objet {
+public class Objet extends ElementDeJeu {
     public String creerSauvegarde() {
         String texte = null;
         return texte;
