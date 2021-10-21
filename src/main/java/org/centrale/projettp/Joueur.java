@@ -22,7 +22,7 @@ public class Joueur<T extends Personnage> {
     private String nomJoueur;
     protected Personnage perso;
     private Class<T> type;
-    private List<Personnage> listPerso;
+    private List<Personnage> listPerso; // this is the list of the possible characters
 
     Random generateurAleatoire = new Random();
 
@@ -42,14 +42,18 @@ public class Joueur<T extends Personnage> {
     }
 
     public Joueur(String nomJoueur, String nom, int ptV, int ptM, int pA, int pP, int pM, int rM, int dA, int dM,
-            int distMax, int ptP, Point2D pos, Class<T> type, List<Personnage> list) {
+            int distMax, int ptP, Point2D pos, Class<T> type) {
         super();
         this.nomJoueur = nomJoueur;
         this.perso = new Personnage(nom, ptV, ptM, pA, pP, pM, rM, dA, dM, distMax, ptP, pos);
 
-        Object obj = new Object();
+        // Object obj = new Object();
         this.type = null;
-        this.listPerso = list;
+        this.listPerso = new ArrayList<Personnage>();
+        this.listPerso.add(new Guerrier());
+        this.listPerso.add(new Archer());
+        this.listPerso.add(new Mage());
+        this.listPerso.add(new Paysan());
     }
 
     public Joueur(Joueur j) {
