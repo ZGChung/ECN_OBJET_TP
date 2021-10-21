@@ -20,12 +20,19 @@ public class TestSeance4 {
         System.out.println("-------------------");
         System.out.println("   Hello World!");
         System.out.println("-------------------");
-        System.out.println("  Create a world");
+        // System.out.println(" Create a world");
+        // System.out.println("-------------------");
+        // World2 monde4 = new World2(30, 30);
+        // monde4.creeMondeAlea(20, 5, 20, 1);
+        // monde4.jouer();
+
         System.out.println("-------------------");
-        World2 monde4 = new World2(30, 30);
-        System.out.println("Monde alea");
-        monde4.creeMondeAlea(20, 5, 20, 1);
-        monde4.jouer();
+        System.out.println("   Save a world!");
+        System.out.println("-------------------");
+
+        System.out.println("-------------------");
+        System.out.println("   Load a world!");
+        System.out.println("-------------------");
         ChargementPartie charge = new ChargementPartie("Sauvegarde-WoE.txt");
         World2 world = charge.chargerPartie();
         world.jouer();

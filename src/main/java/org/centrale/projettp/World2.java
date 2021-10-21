@@ -301,31 +301,34 @@ public class World2 {
     public void afficheMonde() {
         int i;
         System.out.println("Constitution du monde :");
-        System.out.println("Nombre de Créatures :");
-        System.out.println(listCreature.size());
+        System.out.println(">> Nombre de Créatures :");
+        System.out.println(">> " + listCreature.size());
 
         String[][] grid = new String[mondeLongueur][mondeLargeur];
         for (int k = 0; k < mondeLongueur; k++) {
+
             for (int j = 0; j < mondeLargeur; j++) {
                 if (map[k][j] == null) {
                     if (tabObj[k][j].size() > 1) {
                         grid[k][j] = "-|-";
-                    }
-                    if (tabObj[k][j].size() == 1 && tabObj[k][j].get(0) instanceof Soin) {
+                    } else if (tabObj[k][j].size() == 1 && tabObj[k][j].get(0) instanceof Soin) {
                         grid[k][j] = "-s-";
-                    }
-                    if (tabObj[k][j].size() == 1 && tabObj[k][j].get(0) instanceof Mana) {
+                    } else if (tabObj[k][j].size() == 1 && tabObj[k][j].get(0) instanceof Mana) {
                         grid[k][j] = "-m-";
+                    } else if (tabObj[k][j].size() == 1 && tabObj[k][j].get(0) instanceof NuageToxique) {
+                        grid[k][j] = "-n-";
                     } else {
                         grid[k][j] = " . ";
                     }
 
                 } else {
+
                     grid[k][j] = map[k][j];
                 }
                 grid[0][0] = " x ";
             }
         }
+
         for (int k = 0; k < mondeLongueur; k++) {
             for (int j = 0; j < mondeLargeur; j++) {
                 System.out.print(grid[k][j]);
