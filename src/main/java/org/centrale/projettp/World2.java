@@ -107,7 +107,7 @@ public class World2 {
         Point2D ptTemp = new Point2D();
         Point2D zero = new Point2D();
         zero.SetPosition(0, 0);
-        for(int i = 0; i < Math.round(nbPerso*0.2); i++){
+        for(int i = 0; i < Math.round(nbPerso*0.25); i++){
             System.out.println("Archer" +i);
             Archer crea = new Archer();
             
@@ -133,7 +133,7 @@ public class World2 {
             ptTemp=crea.getPos();
             
         }
-        for(int i = 0; i < Math.round(nbPerso*0.2); i++){
+        for(int i = 0; i < Math.round(nbPerso*0.25); i++){
             System.out.println("Paysan" +i);
             Paysan crea = new Paysan();
             
@@ -157,7 +157,7 @@ public class World2 {
             ptTemp=crea.getPos();
             
         }
-        for(int i = 0; i < Math.round(nbPerso*0.2); i++){
+        for(int i = 0; i < nbPerso-3*Math.round(nbPerso*0.25); i++){
             System.out.println("Mage" +i);
             Mage crea = new Mage();
             
@@ -181,7 +181,7 @@ public class World2 {
             ptTemp=crea.getPos();
             
         }
-        for(int i = 0; i < Math.round(nbPerso*0.2); i++){
+        for(int i = 0; i < Math.round(nbPerso*0.25); i++){
             System.out.println("Guerrier" +i);
             Guerrier crea = new Guerrier();
             
@@ -205,7 +205,7 @@ public class World2 {
             ptTemp=crea.getPos();
             
         }
-        for(int i = 0; i < Math.round(nbPerso*0.5); i++){
+        for(int i = 0; i < Math.round(nbMonstre*0.5); i++){
             System.out.println("Loup" +i);
             Loup crea = new Loup();
             
@@ -229,7 +229,7 @@ public class World2 {
             ptTemp=crea.getPos();
             
         }
-        for(int i = 0; i < nbPerso-Math.round(nbPerso*0.5); i++){
+        for(int i = 0; i < nbMonstre-Math.round(nbMonstre*0.5); i++){
             Lapin crea = new Lapin();
             
             ptTemp.Affiche();
@@ -249,30 +249,6 @@ public class World2 {
             listCreature.put(listCreature.size()+i,crea);
             tabCreature[crea.getPos().getX()][crea.getPos().getY()] = crea;
             map[crea.getPos().getX()][crea.getPos().getY()] = " l ";
-            ptTemp=crea.getPos();
-            
-        }
-        for(int i = 0; i < Math.round(nbPerso*0.2); i++){
-            System.out.println("Paysan" +i);
-            Paysan crea = new Paysan();
-            
-            ptTemp.Affiche();
-            
-            Point2D a = new Point2D(crea.getPos().getX(),
-                crea.getPos().getY());
-            // si la distance est trop grande, on refaire le generation du nombre aleatoir
-
-            while(tabCreature[a.getX()][a.getY()] != null || a.distance(ptTemp)>5){
-                // regenerer une position
-                
-                a.SetPosition(generateurAleatoire.nextInt(mondeLongueur),generateurAleatoire.nextInt(mondeLargeur));
-                // parcourir tous les positions generees
-            }
-
-            crea.setPos(a);
-            listCreature.put(listCreature.size()+i,crea);
-            tabCreature[crea.getPos().getX()][crea.getPos().getY()] = crea;
-            map[crea.getPos().getX()][crea.getPos().getY()] = " P ";
             ptTemp=crea.getPos();
             
         }

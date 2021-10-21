@@ -21,6 +21,7 @@ public class TestSeance4 {
         World2 monde4 = new World2(30, 30);
         System.out.println("Monde alea");
         monde4.creeMondeAlea(20,5,20,1);
+        monde4.listJoueurs.get(0).choisirPersonnage();
         System.out.println("Affichage");
         monde4.afficheMonde();
         SauvegardePartie save = new SauvegardePartie("sauve1");

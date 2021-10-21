@@ -114,7 +114,7 @@ public class Joueur<T extends Personnage> {
             int indexList = 0;
             indexList = list.indexOf(str);
             this.perso = type.cast(listPerso.get(indexList));
-            this.perso.affiche();
+            
             // System.out.println("pt3"+ this.perso.getClass().getName());
 
         } catch (Exception e1) {
@@ -125,6 +125,8 @@ public class Joueur<T extends Personnage> {
         String str2 = sc.nextLine();
         System.out.println("Le nom que vous avez choisi est : " + str2);
         this.nomJoueur = str2;
+        this.perso.setNom(str2);
+        this.perso.affiche();
 
         // changer le range des nombres aléatoires
 
