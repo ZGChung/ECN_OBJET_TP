@@ -10,10 +10,10 @@ package org.centrale.projettp;
  * @author uble
  */
 public class Potion extends Objet {
-    //attributs
-    private int pt;
-    private Point2D pos;
-    private boolean use;
+    // attributs
+    protected int pt;
+    protected Point2D pos;
+    protected boolean use;
 
     public boolean isUse() {
         return use;
@@ -38,29 +38,32 @@ public class Potion extends Objet {
     public void setPos(Point2D pos) {
         this.pos = pos;
     }
-    public Potion(){
-        this.pt=0;
-        this.pos= new Point2D(0,0);
-        this.use=true;
+
+    public Potion() {
+        this.pt = 0;
+        this.pos = new Point2D(0, 0);
+        this.use = true;
     }
-    public Potion(int point,Point2D position){
-        this.pt=point;
-        this.pos= position;
-        this.use=true;
+
+    public Potion(int point, Point2D position) {
+        this.pt = point;
+        this.pos = position;
+        this.use = true;
     }
-    public Potion(Potion p){
-        this.pt=p.pt;
-        this.pos= new Point2D(p.pos.getX(),p.pos.getY());
-        this.use=p.use;
+
+    public Potion(Potion p) {
+        this.pt = p.pt;
+        this.pos = new Point2D(p.pos.getX(), p.pos.getY());
+        this.use = p.use;
     }
-    
-    public void affiche(){
-        System.out.println("Le point de cette potion est:"+this.pt);
+
+    public void affiche() {
+        System.out.println("Le point de cette potion est:" + this.pt);
     }
-    
+
     public String creerSauvegarde() {
         String texte = String.format("%d ", this.getPt());
-        texte+= String.format("%d %d", this.getPos().getX(), this.getPos().getY());
+        texte += String.format("%d %d", this.getPos().getX(), this.getPos().getY());
         return texte;
     }
 }

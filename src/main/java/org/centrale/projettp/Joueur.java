@@ -30,7 +30,7 @@ public class Joueur<T extends Personnage> {
     // constructeur
 
     /**
-     *Joueur vide
+     * Joueur vide
      */
     public Joueur() {
         super();
@@ -46,7 +46,8 @@ public class Joueur<T extends Personnage> {
     }
 
     /**
-     *Joueur avec paramètres
+     * Joueur avec paramètres
+     * 
      * @param nomJoueur
      * @param nom
      * @param ptV
@@ -80,6 +81,7 @@ public class Joueur<T extends Personnage> {
 
     /**
      * Copie d'un joueur
+     * 
      * @param j
      */
     public Joueur(Joueur j) {
@@ -159,20 +161,26 @@ public class Joueur<T extends Personnage> {
     // autres methodes
 
     /**
-     *Méthode de choix de personnage
+     * Méthode de choix de personnage
      */
     public void choisirPersonnage() {
         Scanner sc = new Scanner(System.in); // standard input stream
-        System.out.println("Choisir votre personnage en tapant le nom du type: ");
-        String str = "org.centrale.projettp." + sc.nextLine(); // reads string
-
         ArrayList<String> list = new ArrayList<String>();
         this.listPerso.forEach(i -> {
             list.add(i.getClass().getName());
         });
+        System.out.println("Types de Personnage possibles :");
+        ArrayList<String> listtemp = new ArrayList<String>();
+        list.forEach(i -> {
+            listtemp.add(i.substring(22));
+        });
+        System.out.println(listtemp);
+        System.out.println("Choisir votre personnage en tapant le nom du type: ");
+        String str = "org.centrale.projettp." + sc.nextLine(); // reads string
+
         while (list.contains(str) == false) {
             System.out.println("Checkez votre input et reessayer, svp");
-            str = sc.nextLine(); // reads string
+            str = "org.centrale.projettp." + sc.nextLine(); // reads string
         }
         System.out.println("Classe de personnage créée: " + str);
         try {
@@ -181,7 +189,7 @@ public class Joueur<T extends Personnage> {
             int indexList = 0;
             indexList = list.indexOf(str);
             this.perso = type.cast(listPerso.get(indexList));
-            
+
             // System.out.println("pt3"+ this.perso.getClass().getName());
 
         } catch (Exception e1) {
@@ -201,6 +209,7 @@ public class Joueur<T extends Personnage> {
 
     /**
      * Sauvegarde d'un joueur et son personnage
+     * 
      * @return
      */
     public String creerSauvegarde() {

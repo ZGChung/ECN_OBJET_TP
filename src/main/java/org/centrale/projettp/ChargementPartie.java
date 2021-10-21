@@ -55,6 +55,8 @@ public class ChargementPartie {
         Constructor c;
         // read the file
         String delimiteurs = " ,.;";
+
+        System.out.println("---Loading---");
         try {
             String ligne;
             BufferedReader fichier = new BufferedReader(new FileReader(this.nomSauvegarde));
@@ -101,8 +103,32 @@ public class ChargementPartie {
                                 argList.get(3), argList.get(4), argList.get(5), argList.get(6), argList.get(7),
                                 argList.get(8), argList.get(9), new Point2D(argList.get(10), argList.get(11)), 0);
                         // after the creation of one Creature, reset the argList
+                        // System.out.println("Show a class1 : " + crea.getClass().toString());
                         argList.clear();
                         returnWorld.listCreature.put(returnWorld.listCreature.size(), (Creature) crea);
+                        // System.out.println("Show a class2 : " + ((Guerrier)
+                        // crea).getClass().toString());
+
+                        try {
+                            returnWorld.map[((Guerrier) crea).pos.getX()][((Guerrier) crea).pos.getY()] = " G ";
+                            returnWorld.tabCreature[((Guerrier) crea).pos.getX()][((Guerrier) crea).pos
+                                    .getX()] = (Creature) crea;
+                        } catch (ClassCastException e1) {
+                            try {
+                                returnWorld.map[((Mage) crea).pos.getX()][((Mage) crea).pos.getY()] = " M ";
+                                returnWorld.tabCreature[((Mage) crea).pos.getX()][((Mage) crea).pos
+                                        .getX()] = (Creature) crea;
+                            } catch (ClassCastException e2) {
+                                try {
+                                    returnWorld.map[((Archer) crea).pos.getX()][((Archer) crea).pos.getY()] = " A ";
+                                    returnWorld.tabCreature[((Archer) crea).pos.getX()][((Archer) crea).pos
+                                            .getX()] = (Creature) crea;
+                                } catch (ClassCastException e3) {
+                                    System.out.println("Cast Error");
+                                }
+                            }
+                        }
+
                         // System.out.println(returnWorld.listCreature);
 
                     } else if (nameOfAClass.equals("Paysan")) {
@@ -122,6 +148,9 @@ public class ChargementPartie {
                         // after the creation of one Creature, reset the argList
                         argList.clear();
                         returnWorld.listCreature.put(returnWorld.listCreature.size(), (Creature) crea);
+                        returnWorld.map[((Paysan) crea).pos.getX()][((Paysan) crea).pos.getY()] = " P ";
+                        returnWorld.tabCreature[((Paysan) crea).pos.getX()][((Paysan) crea).pos
+                                .getX()] = (Creature) crea;
                         // System.out.println(returnWorld.listCreature);
 
                     } else if (nameOfAClass.equals("Loup") || nameOfAClass.equals("Lapin")) {
@@ -137,6 +166,22 @@ public class ChargementPartie {
                         argList.clear();
                         returnWorld.listCreature.put(returnWorld.listCreature.size(), (Creature) crea);
                         // System.out.println(returnWorld.listCreature);
+
+                        try {
+                            returnWorld.map[((Loup) crea).pos.getX()][((Loup) crea).pos.getY()] = " L ";
+                            returnWorld.tabCreature[((Loup) crea).pos.getX()][((Loup) crea).pos
+                                    .getX()] = (Creature) crea;
+                        } catch (ClassCastException e1) {
+                            try {
+                                returnWorld.map[((Lapin) crea).pos.getX()][((Lapin) crea).pos.getY()] = " l ";
+                                returnWorld.tabCreature[((Lapin) crea).pos.getX()][((Lapin) crea).pos
+                                        .getX()] = (Creature) crea;
+                            } catch (ClassCastException e2) {
+
+                                System.out.println("Cast Error");
+
+                            }
+                        }
                     }
 
                 } else if (this.listObjetPossible.contains("org.centrale.projettp." + mot)) {
@@ -170,6 +215,21 @@ public class ChargementPartie {
                         argList.clear();
                         returnWorld.listObjet.put(returnWorld.listObjet.size(), (Objet) obj);
                         // System.out.println(returnWorld.listObjet);
+                        try {
+                            // returnWorld.map[((Soin) obj).pos.getX()][((Soin) obj).pos.getY()] = " L ";
+                            returnWorld.tabObj[((Soin) obj).pos.getX()][((Soin) obj).pos.getY()].add((Soin) obj);
+
+                        } catch (ClassCastException e1) {
+                            try {
+                                // returnWorld.map[((Mana) obj).pos.getX()][((Mana) obj).pos.getY()] = " l ";
+                                returnWorld.tabObj[((Mana) obj).pos.getX()][((Mana) obj).pos.getY()].add((Mana) obj);
+                            } catch (ClassCastException e2) {
+
+                                System.out.println("Cast Error");
+
+                            }
+                        }
+
                     } else if (nameOfAClass.equals("NuageToxique")) {
                         Class paraClassList[] = new Class[] { int.class, new ArrayList<Point2D>().getClass() };
 
@@ -183,6 +243,10 @@ public class ChargementPartie {
                         argList.clear();
                         returnWorld.listObjet.put(returnWorld.listObjet.size(), (Objet) obj);
                         // System.out.println(returnWorld.listObjet);
+                        // returnWorld.map[((NuageToxique) obj).pos.getX()][((NuageToxique)
+                        // obj).pos.getX()] = " n ";
+                        returnWorld.tabObj[((NuageToxique) obj).listeCase.get(0).getX()][((NuageToxique) obj).listeCase
+                                .get(0).getY()].add((NuageToxique) obj);
                     }
 
                 } else if (mot.equals("Largeur")) {
@@ -225,10 +289,10 @@ public class ChargementPartie {
                                 argList.get(2), argList.get(3), argList.get(4), argList.get(5), argList.get(6),
                                 argList.get(7), argList.get(8), argList.get(9),
                                 new Point2D(argList.get(10), argList.get(11)), cls);
-                        returnWorld.listJoueurs.put(returnWorld.listCreature.size(), j);
+                        returnWorld.listJoueurs.put(returnWorld.listJoueurs.size(), j);
                         // after the creation of one Creature, reset the argList
                         argList.clear();
-                        // System.out.println(returnWorld.listJoueurs);
+                        System.out.println("listJoueurs" + returnWorld.listJoueurs);
 
                     } else if (stringOfAJoueur.get(0).equals("Paysan")) {
                         cls = Class.forName("org.centrale.projettp." + stringOfAJoueur.get(0));
@@ -236,10 +300,10 @@ public class ChargementPartie {
                                 argList.get(2), argList.get(3), argList.get(4), argList.get(5), argList.get(6),
                                 argList.get(7), argList.get(8), argList.get(9),
                                 new Point2D(argList.get(10), argList.get(11)), cls);
-                        returnWorld.listJoueurs.put(returnWorld.listCreature.size(), j);
+                        returnWorld.listJoueurs.put(returnWorld.listJoueurs.size(), j);
                         // after the creation of one Creature, reset the argList
                         argList.clear();
-                        // System.out.println(returnWorld.listJoueurs);
+                        // System.out.println("listJoueurs" + returnWorld.listJoueurs);
 
                     }
 
@@ -267,8 +331,7 @@ public class ChargementPartie {
          * System.out.print("End 2");
          */
 
-        System.out.println("Chargement Finished!");
-        System.out.println("-------------------");
+        System.out.println("---Loading Finished---");
         return returnWorld;
 
     }
