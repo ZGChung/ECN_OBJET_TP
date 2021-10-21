@@ -49,6 +49,11 @@ public class Paysan extends Personnage{
     //getters and setters -> empty 
     //methodes
     
+    /**
+     * Sauvegarde d'un paysan
+     * @return
+     */
+    @Override
     public String creerSauvegarde() {
         return "Paysan " + super.creerSauvegarde();
     }

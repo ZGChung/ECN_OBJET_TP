@@ -72,6 +72,13 @@ public class Guerrier extends Personnage implements Combattant {
 
     // methodes
 
+    /**
+     * Méthode de sauvegarde d'un guerrier utilisant un super
+     * 
+     * @return
+     */
+
+    @Override
     public String creerSauvegarde() {
         return "Guerrier " + super.creerSauvegarde();
     }

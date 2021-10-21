@@ -28,6 +28,10 @@ public class Joueur<T extends Personnage> {
 
     // methodes
     // constructeur
+
+    /**
+     *Joueur vide
+     */
     public Joueur() {
         super();
         this.nomJoueur = "JoueurAlea" + generateurAleatoire.nextInt(999);
@@ -41,6 +45,24 @@ public class Joueur<T extends Personnage> {
 
     }
 
+    /**
+     *Joueur avec paramètres
+     * @param nomJoueur
+     * @param nom
+     * @param ptV
+     * @param ptM
+     * @param pA
+     * @param pP
+     * @param pM
+     * @param rM
+     * @param dA
+     * @param dM
+     * @param distMax
+     * @param ptP
+     * @param pos
+     * @param type
+     * @param list
+     */
     public Joueur(String nomJoueur, String nom, int ptV, int ptM, int pA, int pP, int pM, int rM, int dA, int dM,
             int distMax, int ptP, Point2D pos, Class<T> type) {
         super();
@@ -56,6 +78,10 @@ public class Joueur<T extends Personnage> {
         this.listPerso.add(new Paysan());
     }
 
+    /**
+     * Copie d'un joueur
+     * @param j
+     */
     public Joueur(Joueur j) {
         super();
         this.nomJoueur = j.nomJoueur;
@@ -65,39 +91,76 @@ public class Joueur<T extends Personnage> {
     }
 
     // getters and setters
+
+    /**
+     *
+     * @return
+     */
     public List<Personnage> getListPerso() {
         return listPerso;
     }
 
+    /**
+     *
+     * @param listPerso
+     */
     public void setListPerso(List<Personnage> listPerso) {
         this.listPerso = listPerso;
     }
 
+    /**
+     *
+     * @return
+     */
     public Class<T> getType() {
         return type;
     }
 
+    /**
+     *
+     * @param type
+     */
     public void setType(Class<T> type) {
         this.type = type;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNomJoueur() {
         return nomJoueur;
     }
 
+    /**
+     *
+     * @param nomJoueur
+     */
     public void setNomJoueur(String nomJoueur) {
         this.nomJoueur = nomJoueur;
     }
 
+    /**
+     *
+     * @return
+     */
     public Personnage getPerso() {
-        return perso;
+        return this.perso;
     }
 
+    /**
+     *
+     * @param perso
+     */
     public void setPerso(Personnage perso) {
         this.perso = perso;
     }
 
     // autres methodes
+
+    /**
+     *Méthode de choix de personnage
+     */
     public void choisirPersonnage() {
         Scanner sc = new Scanner(System.in); // standard input stream
         System.out.println("Choisir votre personnage en tapant le nom du type: ");
@@ -118,7 +181,7 @@ public class Joueur<T extends Personnage> {
             int indexList = 0;
             indexList = list.indexOf(str);
             this.perso = type.cast(listPerso.get(indexList));
-            this.perso.affiche();
+            
             // System.out.println("pt3"+ this.perso.getClass().getName());
 
         } catch (Exception e1) {
@@ -129,11 +192,17 @@ public class Joueur<T extends Personnage> {
         String str2 = sc.nextLine();
         System.out.println("Le nom que vous avez choisi est : " + str2);
         this.nomJoueur = str2;
+        this.perso.setNom(str2);
+        this.perso.affiche();
 
         // changer le range des nombres aléatoires
 
     }
 
+    /**
+     * Sauvegarde d'un joueur et son personnage
+     * @return
+     */
     public String creerSauvegarde() {
         return "Joueur " + perso.creerSauvegarde();
     }

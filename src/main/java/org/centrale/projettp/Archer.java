@@ -27,6 +27,7 @@ public class Archer extends Personnage {
      * @param dA    distance attaque physique
      * @param dM    distance attaque magique
      * @param distMax   distance attaque maximum
+     * @param ptP
      * @param pos   position
      * @param nbF  nombre des fléches
      */
@@ -36,33 +37,63 @@ public class Archer extends Personnage {
             pM, rM, dA, dM, distMax, ptP, pos);
         nbFleches=nbF;
     }
+
+    /**
+     *constructeur vide
+     */
     public Archer(){
         super();
         nbFleches=4;
     }
+
+    /**
+     *copie d'un archer
+     * @param a
+     */
     public Archer(Archer a){
         super((Personnage)a);
         nbFleches=a.nbFleches;
     }
     //setters et getters pour NbFleches
+
+    /**
+     * getter flêches
+     * @return
+     */
     public int getNbFleches() {
         return nbFleches;
     }
 
+    /**
+     *setter flêches
+     * @param nbFleches
+     */
     public void setNbFleches(int nbFleches) {
         this.nbFleches = nbFleches;
     }
+
+    /**
+     * affichage du nombre de flêches
+     */
     public void Affiche(){
         super.affiche();
         System.out.println("nombre Fleche : "+this.nbFleches);
         System.out.println("-----------");
     }
     
-    
+    /**
+     * Méthode de sauvegarde utilisant un super.
+     * @return
+     */
+    @Override
     public String creerSauvegarde() {
         return "Archer " + super.creerSauvegarde();
     }
     
+    /**
+     *Méthode de combat des archers
+     * @param c
+     */
     @Override
     public void combattre(Creature c){
         if (this.getPos().distance(c.getPos())<=1){

@@ -163,9 +163,15 @@ public class NuageToxique extends Objet implements Combattant, Deplacable {
 
     }
 
+    /**
+     * Sauvegarde d'un nuage toxique
+     * 
+     * @return
+     */
+    @Override
     public String creerSauvegarde() {
         String texte = String.format("%d ", this.degAtt);
         texte += String.format("%d %d", this.listeCase.get(0).getX(), this.listeCase.get(0).getY());
-        return "Nuage toxique " + texte;
+        return "NuageToxique " + texte;
     }
 }

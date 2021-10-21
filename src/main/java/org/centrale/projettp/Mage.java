@@ -93,7 +93,13 @@ public class Mage extends Personnage implements Combattant{
 
     
     //methodes
+
+    /**
+     * Sauvegarde d'un Mage
+     * @return
+     */
     
+    @Override
     public String creerSauvegarde() {
         return "Mage " + super.creerSauvegarde();
     }

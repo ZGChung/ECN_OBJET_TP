@@ -17,17 +17,33 @@ public class Lapin extends Monstre{
      * @param pA poucentage de réussite de l'attaque physique
      * @param pP pourcentage de réussite pour parer
      * @param dA degre d'attaque
+     * @param ptP
      * @param position position maintenant
      */
     public Lapin(int pV, int pA, int pP, int dA, int ptP, Point2D position){
         super(pV,pA,pP,dA,ptP,position);
     }
+
+    /**
+     * Lapin vide
+     */
     public Lapin(){
         super();
     }
+
+    /**
+     * Copie d'un lapin
+     * @param l
+     */
     public Lapin(Lapin l){
         super((Monstre)l);
     }
+
+    /**
+     * Sauvegarde d'un lapin
+     * @return
+     */
+    @Override
     public String creerSauvegarde() {
         return "Lapin " + super.creerSauvegarde();
     }

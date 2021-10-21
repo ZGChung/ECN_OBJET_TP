@@ -53,6 +53,11 @@ public class Loup extends Monstre implements Combattant{
         super.combattre(c);
     }
     
+    /**
+     * Sauvegarde d'un loup
+     * @return
+     */
+    @Override
     public String creerSauvegarde() {
         return "Loup " + super.creerSauvegarde();
     }

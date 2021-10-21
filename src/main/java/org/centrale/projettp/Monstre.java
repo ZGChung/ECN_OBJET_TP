@@ -86,6 +86,11 @@ public class Monstre extends Creature {
         pos.translate(-1+generateurAleatoire.nextInt(2),-1+generateurAleatoire.nextInt(2));
     }
     
+    /**
+     * Sauvegarde d'un mosntre
+     * @return
+     */
+    @Override
     public String creerSauvegarde() {
         String texte = String.format("%d %d ", ptVie, pourcentageAtt);
         texte += String.format("%d %d", pourcentagePar, degAtt);
