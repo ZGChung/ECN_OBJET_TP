@@ -86,7 +86,7 @@ public class Joueur<T extends Personnage> {
     }
 
     public Personnage getPerso() {
-        return perso;
+        return this.perso;
     }
 
     public void setPerso(Personnage perso) {

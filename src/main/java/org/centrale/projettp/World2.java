@@ -271,8 +271,7 @@ public class World2 {
 
             joueur.getPerso().setPos(a);
             listJoueurs.put(listJoueurs.size()+i,joueur);
-            tabCreature[joueur.getPerso().getPos().getX()][joueur.getPerso().getPos().getY()] = joueur.getPerso();
-            map[joueur.getPerso().getPos().getX()][joueur.getPerso().getPos().getY()] = "*J*";
+            
             ptTemp=joueur.getPerso().getPos();
             
         }
@@ -329,6 +328,7 @@ public class World2 {
                 else{
                     grid[k][j] = map[k][j];
                 }
+                grid[0][0] = " x ";
             }
         }
         for(int k = 0; k < mondeLongueur; k++){
@@ -339,5 +339,108 @@ public class World2 {
         }
         
         
+    }
+    
+    public void jouer(){
+        boolean finish = false;
+        this.afficheMonde();
+        if (this.listJoueurs.size()==0){
+            System.out.println("Pas de joueurs ");
+            finish=true;
+        }
+        else{
+        this.listJoueurs.get(0).choisirPersonnage();
+        tabCreature[this.listJoueurs.get(0).getPerso().getPos().getX()][this.listJoueurs.get(0).getPerso().getPos().getY()] = this.listJoueurs.get(0).getPerso();
+        map[this.listJoueurs.get(0).getPerso().getPos().getX()][this.listJoueurs.get(0).getPerso().getPos().getY()] = "*J*";
+            
+        this.afficheMonde();
+        int tours = 1; // counter of round of game
+        Scanner sc= new Scanner(System.in); //standard input stream
+        while (this.listJoueurs.get(0).perso.ptVie >0 && tours <51 && finish==false){
+            Personnage p = this.listJoueurs.get(0).perso;
+
+            System.out.println("\nVeuillez choisir une action :");
+            System.out.println(" 1 : Se déplacer");
+            System.out.println(" 2 : Combattre");
+            System.out.println(" 3 : Arrêter la partie");
+            int action = 0;
+            while (action != 1 && action != 2 && action != 3) {
+                System.out.println("Veuillez entrer une action :");
+                action = sc.nextInt();
+            }
+            switch(action){
+                case 1 : 
+                    p.affiche();
+                    System.out.println("X for deplacer: ");
+                    int comX = 0;
+                    int comY = 0;
+                    comX = sc.nextInt();
+                    System.out.println("Y for deplacer: ");
+                    comY = sc.nextInt();
+                    Point2D comPt = new Point2D(p.getPos().getX()+comX,p.getPos().getY()+comY);
+                    while(this.tabCreature[comPt.getX()][comPt.getY()]!=null){
+                        System.out.println("Case occupied, please choose another position");
+                        System.out.println("X for deplacer: ");
+                        comX = 0;
+                        comY = 0;
+                        comX = sc.nextInt();
+                        System.out.println("Y for deplacer: ");
+                        comY = sc.nextInt();
+                        comPt = new Point2D(p.getPos().getX()+comX,p.getPos().getY()+comY);
+                    }
+                    Point2D pos = new Point2D(p.getPos().getX()+comX,p.getPos().getY()+comY);
+                    deplacementCrea(pos);
+                    p.deplacer(comX, comY);
+                    p.affiche();
+                    break;
+                case 2 :
+                    System.out.println("Visez la cible (ligne et colonne) grâce à la map, (0,0) est en haut à gauche");
+                    System.out.println("Ligne (entre 0 et " + (this.mondeLongueur-1) + ") :");
+                    int choixX = -1;
+                    while (choixX < 0 || choixX >= this.mondeLongueur) {
+                        choixX = sc.nextInt();
+                    }
+                    System.out.println("Colonne (entre 0 et " + (this.mondeLargeur-1) + ") :");
+                    int choixY = -1;
+                    while (choixY < 0 || choixY >= this.mondeLargeur) {
+                        choixY = sc.nextInt();
+                    }
+                    if (tabCreature[choixX][choixY]==null){
+                        System.out.println("Pas de créature en [" +choixX+ ","+choixY + "]" );
+                    }
+                    else{
+                        p.combattre(tabCreature[choixX][choixY]);
+                        if (tabCreature[choixX][choixY].getPtVie()<0){
+                            tabCreature[choixX][choixY]=null; //créature morte
+                        }
+                    }
+                    break;
+                case 3 :
+                    finish =true;
+                    break;
+
+            }
+            this.afficheMonde();
+            int choix = 0;
+            while (choix != 1 && choix != 2 ) {
+                System.out.println("Voulez vous sauvegarder la partie ? [oui : 1/non : 2]");
+                choix = sc.nextInt();
+            }
+            
+            if (choix==1){
+                (new SauvegardePartie()).sauvegarderPartie(this);
+            }
+            
+
+            //at the end of a round, count a round
+            tours = tours + 1;
+     }
+    }
+    }
+    public void deplacementCrea(Point2D pos){
+        tabCreature[pos.getX()][pos.getY()]=this.listJoueurs.get(0).getPerso();
+        map[pos.getX()][pos.getY()]="*J*";
+        tabCreature[this.listJoueurs.get(0).perso.getPos().getX()][this.listJoueurs.get(0).perso.getPos().getY()]=null;
+        map[this.listJoueurs.get(0).perso.getPos().getX()][this.listJoueurs.get(0).perso.getPos().getY()]=null;
     }
 }
