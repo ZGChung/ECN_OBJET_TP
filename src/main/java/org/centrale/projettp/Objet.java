@@ -6,7 +6,7 @@
 package org.centrale.projettp;
 
 /**
- *
+ * Class d'objet
  * @author uble
  */
 public class Objet extends ElementDeJeu {

@@ -6,19 +6,39 @@
 package org.centrale.projettp;
 
 /**
- *
+ * Potion de Mana
  * @author uble
  */
 public class Mana extends Potion{
+
+    /**
+     * constructeur vide
+     */
     public Mana(){
         super();
     }
+
+    /**
+     * COnstructeur avec points de mana
+     * @param pt
+     * @param pos
+     */
     public Mana(int pt, Point2D pos){
         super(pt,pos);
     }
+
+    /**
+     * Copie d'une potion de mana
+     * @param m
+     */
     public Mana(Mana m){
         super((Potion)m);
     }
+
+    /**
+     * Altération d'un personnage par la potion de Mana
+     * @param p
+     */
     public void modifier(Personnage p){
        
         if (this.getPos().getX()==p.getPos().getX() && this.getPos().getY()==p.getPos().getY() && this.isUse()){
@@ -32,6 +52,11 @@ public class Mana extends Potion{
         }
     }
     
+    /**
+     * Sauvegarde de la pot de mana
+     * @return
+     */
+    @Override
     public String creerSauvegarde() {
         
         return "Mana " + super.creerSauvegarde();

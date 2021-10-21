@@ -193,7 +193,7 @@ public abstract class Creature extends ElementDeJeu implements Deplacable {
     public abstract void deplacer();
     
     /**
-     * fonction de combattre
+     * fonction de combat
      * @param c 
      */
     public void combattre(Creature c){

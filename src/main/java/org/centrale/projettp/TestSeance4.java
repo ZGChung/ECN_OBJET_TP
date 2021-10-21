@@ -17,12 +17,13 @@ public class TestSeance4 {
     public static void main(String[] args) {
 
         // creer un monde
-        System.out.println("Crea monde");
-        World2 monde4 = new World2(30, 30);
-        System.out.println("Monde alea");
-        monde4.creeMondeAlea(20,5,20,1);
-        monde4.jouer();
-        //ChargementPartie charge = new ChargementPartie("Sauvegarde-WoE.txt");
-        //charge.chargerPartie();
+        //System.out.println("Crea monde");
+        //World2 monde4 = new World2(30, 30);
+        //System.out.println("Monde alea");
+        //monde4.creeMondeAlea(20,5,20,1);
+        //monde4.jouer();
+        ChargementPartie charge = new ChargementPartie("Sauvegarde-WoE.txt");
+        World2 world = charge.chargerPartie();
+        world.jouer();
     }
 }

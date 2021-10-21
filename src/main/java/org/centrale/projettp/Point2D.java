@@ -14,32 +14,63 @@ public class Point2D {
     private int X;
     private int Y;
     //contructor with no parameters
+
+    /**
+     *COnstruc vide
+     */
     public Point2D(){
         X=5;
         Y=6;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getX() {
         return X;
     }
 
+    /**
+     *
+     * @param X
+     */
     public void setX(int X) {
         this.X = X;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getY() {
         return Y;
     }
 
+    /**
+     *
+     * @param Y
+     */
     public void setY(int Y) {
         this.Y = Y;
     }
     //Constructor with parameters
+
+    /**
+     *
+     * @param x
+     * @param y
+     */
     public Point2D(int x, int y){
         X=x;
         Y=y;
     }
     //Constructor which copy another one
+
+    /**
+     *
+     * @param pt
+     */
     public Point2D(Point2D pt){
         X=pt.X;
         Y=pt.Y;
@@ -47,19 +78,37 @@ public class Point2D {
     //Afficheur
 
     /**
-     *
+     * Affichage
      */
     public void Affiche(){
         System.out.println("["+X+","+Y+"]");
     }
+
+    /**
+     *
+     * @param x1
+     * @param y1
+     */
     public void SetPosition(int x1, int y1){
         X=x1;
         Y=y1;
     }
+
+    /**
+     * Translation 
+     * @param dx
+     * @param dy
+     */
     public void translate(int dx, int dy){
         X=X+dx;
         Y=Y+dy;
     }
+
+    /**
+     * Mesure de distance
+     * @param p
+     * @return
+     */
     public double distance(Point2D p){
         double dist;
         
@@ -68,6 +117,11 @@ public class Point2D {
         
     }
     
+    /**
+     * test d'égalité entre positions
+     * @param pt
+     * @return
+     */
     public boolean equals (Point2D pt) {
         if (this==pt) return true;
         if (this == null) return false;

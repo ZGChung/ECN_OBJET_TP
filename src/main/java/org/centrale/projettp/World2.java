@@ -341,6 +341,9 @@ public class World2 {
         
     }
     
+    /**
+     * Méthode de protocole de jeu
+     */
     public void jouer(){
         boolean finish = false;
         this.afficheMonde();
@@ -437,6 +440,11 @@ public class World2 {
      }
     }
     }
+
+    /**
+     *Méthode pour actualiser la map et le tableau des créature lors d'un déplacement
+     * @param pos
+     */
     public void deplacementCrea(Point2D pos){
         tabCreature[pos.getX()][pos.getY()]=this.listJoueurs.get(0).getPerso();
         map[pos.getX()][pos.getY()]="*J*";

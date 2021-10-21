@@ -306,10 +306,11 @@ public class Personnage extends Creature {
         }
     }
     
-    public void malAffiche(){
-        //System.out.println("Methode malAffiche()");
-        malAffiche();
-    }
+    /**
+     *Sauvegarde d'un personnage
+     * @return
+     */
+    @Override
     public String creerSauvegarde() {
         String texte = String.format("%s %d %d %d ", nom, ptVie, ptMana, pourcentageAtt);
         texte += String.format("%d %d %d ", pourcentagePar, pourcentageMag, pourcentageResistMag);
