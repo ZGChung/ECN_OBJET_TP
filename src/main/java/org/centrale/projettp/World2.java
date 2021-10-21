@@ -343,17 +343,27 @@ public class World2 {
      */
     public void jouer() {
         boolean finish = false;
-        this.afficheMonde();
+        // this.afficheMonde();
         if (this.listJoueurs.size() == 0) {
             System.out.println("Pas de joueurs ");
             finish = true;
         } else {
-            this.listJoueurs.get(0).choisirPersonnage();
-            tabCreature[this.listJoueurs.get(0).getPerso().getPos().getX()][this.listJoueurs.get(0).getPerso().getPos()
-                    .getY()] = this.listJoueurs.get(0).getPerso();
-            map[this.listJoueurs.get(0).getPerso().getPos().getX()][this.listJoueurs.get(0).getPerso().getPos()
-                    .getY()] = "*J*";
-
+            // if there is already a Personnage
+            // in the current version, we assume that there is only 1 joueur
+            if (this.listJoueurs.get(0).perso instanceof Personnage) {
+                // System.out.println("pt1");
+                tabCreature[this.listJoueurs.get(0).getPerso().getPos().getX()][this.listJoueurs.get(0).getPerso()
+                        .getPos().getY()] = this.listJoueurs.get(0).getPerso();
+                map[this.listJoueurs.get(0).getPerso().getPos().getX()][this.listJoueurs.get(0).getPerso().getPos()
+                        .getY()] = "*J*";
+            } else {
+                // if there is no Personange
+                this.listJoueurs.get(0).choisirPersonnage();
+                tabCreature[this.listJoueurs.get(0).getPerso().getPos().getX()][this.listJoueurs.get(0).getPerso()
+                        .getPos().getY()] = this.listJoueurs.get(0).getPerso();
+                map[this.listJoueurs.get(0).getPerso().getPos().getX()][this.listJoueurs.get(0).getPerso().getPos()
+                        .getY()] = "*J*";
+            }
             this.afficheMonde();
             int tours = 1; // counter of round of game
             Scanner sc = new Scanner(System.in); // standard input stream
@@ -434,6 +444,7 @@ public class World2 {
                 // at the end of a round, count a round
                 tours = tours + 1;
             }
+
         }
     }
 

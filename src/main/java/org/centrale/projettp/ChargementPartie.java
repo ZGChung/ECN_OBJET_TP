@@ -303,7 +303,8 @@ public class ChargementPartie {
                         returnWorld.listJoueurs.put(returnWorld.listJoueurs.size(), j);
                         // after the creation of one Creature, reset the argList
                         argList.clear();
-                        // System.out.println("listJoueurs" + returnWorld.listJoueurs);
+                        System.out.println("listJoueurs" + returnWorld.listJoueurs);
+                        // returnWorld.map
 
                     }
 
