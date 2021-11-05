@@ -27,6 +27,7 @@ public class World2 {
 
     /**
      * getter longueur monde
+     * 
      * @return
      */
     public Integer getMondeLongueur() {
@@ -35,6 +36,7 @@ public class World2 {
 
     /**
      * setter longeur Monde
+     * 
      * @param mondeLongueur
      */
     public void setMondeLongueur(Integer mondeLongueur) {
@@ -43,6 +45,7 @@ public class World2 {
 
     /**
      * getter largeur monde
+     * 
      * @return
      */
     public Integer getMondeLargeur() {
@@ -51,6 +54,7 @@ public class World2 {
 
     /**
      * setter largeur monde
+     * 
      * @param mondeLargeur
      */
     public void setMondeLargeur(Integer mondeLargeur) {
@@ -309,19 +313,19 @@ public class World2 {
 
         }
         System.out.println("Nuage");
-        Point2D a = new Point2D(generateurAleatoire.nextInt(mondeLongueur),
-            generateurAleatoire.nextInt(mondeLargeur));
-        int x_nuage=generateurAleatoire.nextInt(mondeLongueur);
-        int y_nuage=generateurAleatoire.nextInt(mondeLargeur);
+        Point2D a = new Point2D(generateurAleatoire.nextInt(mondeLongueur), generateurAleatoire.nextInt(mondeLargeur));
+        int x_nuage = generateurAleatoire.nextInt(mondeLongueur);
+        int y_nuage = generateurAleatoire.nextInt(mondeLargeur);
         int attaque = generateurAleatoire.nextInt(40);
-        NuageToxique nuage = new NuageToxique(attaque,x_nuage,y_nuage);
-        listObjet.put(listObjet.size()+1,nuage);
+        NuageToxique nuage = new NuageToxique(attaque, x_nuage, y_nuage);
+        listObjet.put(listObjet.size() + 1, nuage);
         ArrayList<Point2D> cases_nuage = nuage.getListeCase();
         for (int i = 0; i < cases_nuage.size(); i++) {
-            if (cases_nuage.get(i).getX()>0 && cases_nuage.get(i).getX()<mondeLongueur && cases_nuage.get(i).getY()>0 && cases_nuage.get(i).getY()<mondeLargeur){
-                tabObj[cases_nuage.get(i).getX()][cases_nuage.get(i).getY()].add(nuage) ;
+            if (cases_nuage.get(i).getX() > 0 && cases_nuage.get(i).getX() < mondeLongueur
+                    && cases_nuage.get(i).getY() > 0 && cases_nuage.get(i).getY() < mondeLargeur) {
+                tabObj[cases_nuage.get(i).getX()][cases_nuage.get(i).getY()].add(nuage);
             }
-            
+
         }
 
     }
@@ -383,16 +387,17 @@ public class World2 {
             // if there is already a Personnage
             // in the current version, we assume that there is only 1 joueur
             if (this.listJoueurs.get(0).perso instanceof Personnage) {
-                System.out.println("\nVoulez vous modifier votre classe et votre nom ? : (si c'est une nouvelle partie tapez 1)");
+                System.out.println(
+                        "\nVoulez vous modifier votre classe et votre nom ? : (si c'est une nouvelle partie tapez 1)");
                 System.out.println(" 1 : oui");
                 System.out.println(" 2 : non");
-                
+
                 int ac = 0;
-                while (ac != 1 && ac != 2 ) {
+                while (ac != 1 && ac != 2) {
                     System.out.println("Veuillez entrer une action :");
                     ac = sc.nextInt();
                 }
-                if (ac==1){
+                if (ac == 1) {
                     this.listJoueurs.get(0).choisirPersonnage();
                 }
                 // System.out.println("pt1");
@@ -410,7 +415,7 @@ public class World2 {
             }
             this.afficheMonde();
             int tours = 1; // counter of round of game
-            
+
             while (this.listJoueurs.get(0).perso.ptVie > 0 && tours < 51 && finish == false) {
                 Personnage p = this.listJoueurs.get(0).perso;
 
@@ -446,6 +451,26 @@ public class World2 {
                     Point2D pos = new Point2D(p.getPos().getX() + comX, p.getPos().getY() + comY);
                     deplacementCrea(pos);
                     p.deplacer(comX, comY);
+                    if ((this.tabObj[p.getPos().getX()][p.getPos().getY()]) != null) {
+                        System.out.println("into the if");
+
+                        if (this.tabObj[p.getPos().getX()][p.getPos().getY()].get(0) instanceof Soin) {
+                            System.out.println("Soin");
+                            Soin s = (Soin) this.tabObj[p.getPos().getX()][p.getPos().getY()].get(0);
+                            s.modifier(p);
+                            s.affiche();
+                        } else if (this.tabObj[p.getPos().getX()][p.getPos().getY()].get(0) instanceof Mana) {
+                            System.out.println("Mana");
+                            Mana m = (Mana) this.tabObj[p.getPos().getX()][p.getPos().getY()].get(0);
+                            m.modifier(p);
+                            m.affiche();
+                        } else if (this.tabObj[p.getPos().getX()][p.getPos().getY()].get(0) instanceof Nourriture) {
+                            System.out.println("Nourriture");
+                            Nourriture n = (Nourriture) this.tabObj[p.getPos().getX()][p.getPos().getY()].get(0);
+                            n.alterer(p);
+
+                        }
+                    }
                     p.affiche();
                     break;
                 case 2:
