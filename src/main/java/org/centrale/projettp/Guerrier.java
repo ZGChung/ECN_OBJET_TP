@@ -5,8 +5,6 @@
  */
 package org.centrale.projettp;
 
-import java.util.Random;
-
 /**
  * class de Guerrier, sous class de Personnage
  * 
