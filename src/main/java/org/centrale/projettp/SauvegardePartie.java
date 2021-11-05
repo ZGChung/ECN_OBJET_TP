@@ -19,7 +19,7 @@ public class SauvegardePartie {
     BufferedWriter buffer;
 
     /**
-     *
+     * getter nom de fichier
      * @return
      */
     public String getNomFichier() {
@@ -27,7 +27,7 @@ public class SauvegardePartie {
     }
 
     /**
-     *
+     * setter nom de fichier
      * @param nomFichier
      */
     public void setNomFichier(String nomFichier) {
@@ -35,7 +35,7 @@ public class SauvegardePartie {
     }
 
     /**
-     *
+     * getter buffer
      * @return
      */
     public BufferedWriter getBuffer() {
@@ -43,7 +43,7 @@ public class SauvegardePartie {
     }
 
     /**
-     *
+     * setter buffer
      * @param buffer
      */
     public void setBuffer(BufferedWriter buffer) {
@@ -51,7 +51,7 @@ public class SauvegardePartie {
     }
     
     /**
-     *
+     *constructeur
      * @param nomFichier
      */
     public SauvegardePartie(String nomFichier) {
@@ -74,7 +74,7 @@ public class SauvegardePartie {
         
         System.out.println("Voulez-vous personnaliser le nom du fichier de sauvegarde ? [oui/non]");  
         String rep= sc.nextLine();
-        System.out.println("Le nom que vous avez choisi est : " + rep);
+        System.out.println("Votre choix est : " + rep);
         if ("oui".equals(rep)){
             System.out.println("Entrez le nom de votre sauvegarde");  
             nomFichier= sc.nextLine()+".txt";          //reads string

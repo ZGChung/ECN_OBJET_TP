@@ -7,6 +7,10 @@ import java.lang.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.*;
 
+/**
+ * Class de chargement
+ * @author uble
+ */
 public class ChargementPartie {
     private String nomSauvegarde;
     // BufferedReader bfrd;
@@ -15,6 +19,10 @@ public class ChargementPartie {
     protected List<Creature> listCreature;
     protected List<Objet> listObjet;
 
+    /**
+     * Constructeur à partir d'un nom
+     * @param nomSauvegarde
+     */
     protected ChargementPartie(String nomSauvegarde) {
         this.nomSauvegarde = nomSauvegarde;
         this.listCreature = new ArrayList<Creature>();
@@ -42,6 +50,10 @@ public class ChargementPartie {
 
     }
 
+    /**
+     *Méthode de chargement
+     * @return
+     */
     protected World2 chargerPartie() {
 
         World2 returnWorld = new World2(100, 100);
@@ -238,6 +250,15 @@ public class ChargementPartie {
                         Point2D p = new Point2D(argList.get(1), argList.get(2));
                         ArrayList<Point2D> tempList = new ArrayList<Point2D>();
                         tempList.add(p);
+                        for (int i = 1; i < Math.round(argList.get(3)/ 4); i++) {
+                                // On étend le nuage en carré
+                                for (int j = 0; j <= i; j++) {
+                                    tempList.add(new Point2D(p.getX() + i, p.getY() + j));
+                                    tempList.add(new Point2D(p.getX() + j, p.getY() + i));
+
+                                }
+
+                            }
                         Object obj = c.newInstance(argList.get(0), tempList);
                         // after the creation of one Objet, reset the argList
                         argList.clear();
@@ -247,6 +268,11 @@ public class ChargementPartie {
                         // obj).pos.getX()] = " n ";
                         returnWorld.tabObj[((NuageToxique) obj).listeCase.get(0).getX()][((NuageToxique) obj).listeCase
                                 .get(0).getY()].add((NuageToxique) obj);
+                        for (int i = 0; i < tempList.size(); i++) {
+                            if (tempList.get(i).getX()>0 && tempList.get(i).getX()<returnWorld.mondeLongueur && tempList.get(i).getY()>0 && tempList.get(i).getY()<returnWorld.mondeLargeur){
+                                returnWorld.tabObj[tempList.get(i).getX()][tempList.get(i).getY()].add((NuageToxique) obj) ;
+                            }
+        }
                     }
 
                 } else if (mot.equals("Largeur")) {

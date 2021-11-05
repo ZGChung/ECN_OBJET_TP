@@ -89,7 +89,7 @@ public abstract class Creature extends ElementDeJeu implements Deplacable {
     //getters
     
     /**
-     *
+     *getter ptVIe
      * @return
      */
     public int getPtVie() {
@@ -97,7 +97,7 @@ public abstract class Creature extends ElementDeJeu implements Deplacable {
     }
 
     /**
-     *
+     *getter Pourcentage attaque
      * @return
      */
     public int getPourcentageAtt() {
@@ -105,7 +105,7 @@ public abstract class Creature extends ElementDeJeu implements Deplacable {
     }
 
     /**
-     *
+     *getter Pourcentage de Par
      * @return
      */
     public int getPourcentagePar() {
@@ -113,7 +113,7 @@ public abstract class Creature extends ElementDeJeu implements Deplacable {
     }
 
     /**
-     *
+     *getter Dégâts d'attaque
      * @return
      */
     public int getDegAtt() {
@@ -121,7 +121,7 @@ public abstract class Creature extends ElementDeJeu implements Deplacable {
     }
 
     /**
-     *
+     *getter Points de Par
      * @return
      */
     public int getPtPar() {
@@ -129,7 +129,7 @@ public abstract class Creature extends ElementDeJeu implements Deplacable {
     }
 
     /**
-     *
+     *getter Pos
      * @return
      */
     public Point2D getPos() {
@@ -139,7 +139,7 @@ public abstract class Creature extends ElementDeJeu implements Deplacable {
     //setters
 
     /**
-     *
+     *setter ptVie
      * @param ptVie
      */
 
@@ -148,7 +148,7 @@ public abstract class Creature extends ElementDeJeu implements Deplacable {
     }
 
     /**
-     *
+     *setter Pourcentage Attaque
      * @param pourcentageAtt
      */
     public void setPourcentageAtt(int pourcentageAtt) {
@@ -156,7 +156,7 @@ public abstract class Creature extends ElementDeJeu implements Deplacable {
     }
 
     /**
-     *
+     *setter Pourcentage de Par
      * @param pourcentagePar
      */
     public void setPourcentagePar(int pourcentagePar) {
@@ -164,7 +164,7 @@ public abstract class Creature extends ElementDeJeu implements Deplacable {
     }
 
     /**
-     *
+     * setter Dégâts d'attaque
      * @param degAtt
      */
     public void setDegAtt(int degAtt) {
@@ -172,7 +172,7 @@ public abstract class Creature extends ElementDeJeu implements Deplacable {
     }
 
     /**
-     *
+     *setter Position
      * @param pos
      */
     public void setPos(Point2D pos) {
@@ -180,7 +180,7 @@ public abstract class Creature extends ElementDeJeu implements Deplacable {
     }
     
     /**
-     *
+     * setter Points de Par
      * @param ptPar
      */
     public void setPtPar(int ptPar) {
@@ -223,6 +223,10 @@ public abstract class Creature extends ElementDeJeu implements Deplacable {
         }
     }
     
+    /**
+     * création de Sauvegarde
+     * @return
+     */
     public String creerSauvegarde() {
         String texte = String.format("%d ", this.getPtPar());
         texte+= String.format("%d %d", this.getPos().getX(), this.getPos().getY());

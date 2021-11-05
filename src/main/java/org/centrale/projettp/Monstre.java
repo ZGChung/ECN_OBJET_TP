@@ -93,7 +93,7 @@ public class Monstre extends Creature {
     @Override
     public String creerSauvegarde() {
         String texte = String.format("%d %d ", ptVie, pourcentageAtt);
-        texte += String.format("%d %d", pourcentagePar, degAtt);
-        return texte;
+        texte += String.format("%d %d ", pourcentagePar, degAtt);
+        return texte + super.creerSauvegarde();
     }
 }

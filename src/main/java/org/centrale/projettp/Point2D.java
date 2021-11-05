@@ -16,7 +16,7 @@ public class Point2D {
     //contructor with no parameters
 
     /**
-     *COnstruc vide
+     *Constructeur vide
      */
     public Point2D(){
         X=5;
@@ -24,7 +24,7 @@ public class Point2D {
     }
 
     /**
-     *
+     * getter X
      * @return
      */
     public int getX() {
@@ -32,7 +32,7 @@ public class Point2D {
     }
 
     /**
-     *
+     * setter X
      * @param X
      */
     public void setX(int X) {
@@ -40,7 +40,7 @@ public class Point2D {
     }
 
     /**
-     *
+     * getter Y
      * @return
      */
     public int getY() {
@@ -48,7 +48,7 @@ public class Point2D {
     }
 
     /**
-     *
+     * setter Y
      * @param Y
      */
     public void setY(int Y) {
@@ -57,7 +57,7 @@ public class Point2D {
     //Constructor with parameters
 
     /**
-     *
+     * constructeur Point2D à partir des 2 coo
      * @param x
      * @param y
      */
@@ -68,7 +68,7 @@ public class Point2D {
     //Constructor which copy another one
 
     /**
-     *
+     * copie d'un point
      * @param pt
      */
     public Point2D(Point2D pt){
@@ -85,7 +85,7 @@ public class Point2D {
     }
 
     /**
-     *
+     * setter position
      * @param x1
      * @param y1
      */

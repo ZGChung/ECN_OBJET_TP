@@ -25,18 +25,34 @@ public class World2 {
 
     Random generateurAleatoire = new Random();
 
+    /**
+     * getter longueur monde
+     * @return
+     */
     public Integer getMondeLongueur() {
         return mondeLongueur;
     }
 
+    /**
+     * setter longeur Monde
+     * @param mondeLongueur
+     */
     public void setMondeLongueur(Integer mondeLongueur) {
         this.mondeLongueur = mondeLongueur;
     }
 
+    /**
+     * getter largeur monde
+     * @return
+     */
     public Integer getMondeLargeur() {
         return mondeLargeur;
     }
 
+    /**
+     * setter largeur monde
+     * @param mondeLargeur
+     */
     public void setMondeLargeur(Integer mondeLargeur) {
         this.mondeLargeur = mondeLargeur;
     }
@@ -292,6 +308,21 @@ public class World2 {
             tabObj[pot.getPos().getX()][pot.getPos().getY()].add(pot);
 
         }
+        System.out.println("Nuage");
+        Point2D a = new Point2D(generateurAleatoire.nextInt(mondeLongueur),
+            generateurAleatoire.nextInt(mondeLargeur));
+        int x_nuage=generateurAleatoire.nextInt(mondeLongueur);
+        int y_nuage=generateurAleatoire.nextInt(mondeLargeur);
+        int attaque = generateurAleatoire.nextInt(40);
+        NuageToxique nuage = new NuageToxique(attaque,x_nuage,y_nuage);
+        listObjet.put(listObjet.size()+1,nuage);
+        ArrayList<Point2D> cases_nuage = nuage.getListeCase();
+        for (int i = 0; i < cases_nuage.size(); i++) {
+            if (cases_nuage.get(i).getX()>0 && cases_nuage.get(i).getX()<mondeLongueur && cases_nuage.get(i).getY()>0 && cases_nuage.get(i).getX()<mondeLargeur){
+                tabObj[cases_nuage.get(i).getX()][cases_nuage.get(i).getY()].add(nuage) ;
+            }
+            
+        }
 
     }
 
@@ -343,6 +374,7 @@ public class World2 {
      */
     public void jouer() {
         boolean finish = false;
+        Scanner sc = new Scanner(System.in); // standard input stream
         // this.afficheMonde();
         if (this.listJoueurs.size() == 0) {
             System.out.println("Pas de joueurs ");
@@ -351,6 +383,18 @@ public class World2 {
             // if there is already a Personnage
             // in the current version, we assume that there is only 1 joueur
             if (this.listJoueurs.get(0).perso instanceof Personnage) {
+                System.out.println("\nVoulez vous modifier votre classe et votre nom ? : (si c'est une nouvelle partie tapez 1)");
+                System.out.println(" 1 : oui");
+                System.out.println(" 2 : non");
+                
+                int ac = 0;
+                while (ac != 1 && ac != 2 ) {
+                    System.out.println("Veuillez entrer une action :");
+                    ac = sc.nextInt();
+                }
+                if (ac==1){
+                    this.listJoueurs.get(0).choisirPersonnage();
+                }
                 // System.out.println("pt1");
                 tabCreature[this.listJoueurs.get(0).getPerso().getPos().getX()][this.listJoueurs.get(0).getPerso()
                         .getPos().getY()] = this.listJoueurs.get(0).getPerso();
@@ -366,7 +410,7 @@ public class World2 {
             }
             this.afficheMonde();
             int tours = 1; // counter of round of game
-            Scanner sc = new Scanner(System.in); // standard input stream
+            
             while (this.listJoueurs.get(0).perso.ptVie > 0 && tours < 51 && finish == false) {
                 Personnage p = this.listJoueurs.get(0).perso;
 

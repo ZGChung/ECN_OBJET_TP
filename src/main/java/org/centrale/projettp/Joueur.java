@@ -95,7 +95,7 @@ public class Joueur<T extends Personnage> {
     // getters and setters
 
     /**
-     *
+     * getter de la liste des personnages
      * @return
      */
     public List<Personnage> getListPerso() {
@@ -103,7 +103,7 @@ public class Joueur<T extends Personnage> {
     }
 
     /**
-     *
+     * setter de la liste des personnages
      * @param listPerso
      */
     public void setListPerso(List<Personnage> listPerso) {
@@ -111,7 +111,7 @@ public class Joueur<T extends Personnage> {
     }
 
     /**
-     *
+     * getter du type
      * @return
      */
     public Class<T> getType() {
@@ -119,7 +119,7 @@ public class Joueur<T extends Personnage> {
     }
 
     /**
-     *
+     * setter du type
      * @param type
      */
     public void setType(Class<T> type) {
@@ -127,7 +127,7 @@ public class Joueur<T extends Personnage> {
     }
 
     /**
-     *
+     * getter du nom du joueur
      * @return
      */
     public String getNomJoueur() {
@@ -135,7 +135,7 @@ public class Joueur<T extends Personnage> {
     }
 
     /**
-     *
+     * setter du nom du joueur
      * @param nomJoueur
      */
     public void setNomJoueur(String nomJoueur) {
@@ -143,7 +143,7 @@ public class Joueur<T extends Personnage> {
     }
 
     /**
-     *
+     * getter du personnage du joueur
      * @return
      */
     public Personnage getPerso() {
@@ -151,7 +151,7 @@ public class Joueur<T extends Personnage> {
     }
 
     /**
-     *
+     * setter du personnage
      * @param perso
      */
     public void setPerso(Personnage perso) {

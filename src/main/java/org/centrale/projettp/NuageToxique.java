@@ -25,6 +25,7 @@ public class NuageToxique extends Objet implements Combattant, Deplacable {
      * dégat d'attaque du nuage
      */
     protected int degAtt;
+    protected int taille;
 
     Random generateurAleatoire = new Random();
 
@@ -33,7 +34,7 @@ public class NuageToxique extends Objet implements Combattant, Deplacable {
      */
     public NuageToxique() {
         this.degAtt = generateurAleatoire.nextInt(100);
-        int taille = generateurAleatoire.nextInt(100);
+        taille = generateurAleatoire.nextInt(100);
         this.listeCase = new ArrayList<>();
         Point2D origine = new Point2D(generateurAleatoire.nextInt(5), generateurAleatoire.nextInt(5));
         for (int i = 0; i < Math.round(taille / 4); i++) {
@@ -47,6 +48,30 @@ public class NuageToxique extends Objet implements Combattant, Deplacable {
         }
 
     }
+    
+     /**
+     * constructeur taille aléatoire mais deg att et origine choisie
+     * @param degAtt
+     * @param X
+     * @param Y
+     */
+    public NuageToxique(int degAtt, int X, int Y) {
+        this.degAtt = degAtt;
+        taille = generateurAleatoire.nextInt(100);
+        this.listeCase = new ArrayList<>();
+        Point2D origine = new Point2D(X, Y);
+        for (int i = 0; i < Math.round(taille / 4); i++) {
+            // On étend le nuage en cercle
+
+            for (int j = 0; j <= i; j++) {
+                listeCase.add(new Point2D(origine.getX() + i, origine.getY() + j));
+                listeCase.add(new Point2D(origine.getX() + j, origine.getY() + i));
+
+            }
+        }
+
+    }
+    
 
     /**
      * constructeur taille aléatoire avec les paramètres input
@@ -54,7 +79,7 @@ public class NuageToxique extends Objet implements Combattant, Deplacable {
     public NuageToxique(int degAtt, ArrayList<Point2D> listeCase) {
         this.degAtt = degAtt;
         this.listeCase = listeCase;
-        int taille = generateurAleatoire.nextInt(100);
+        taille = generateurAleatoire.nextInt(100);
     }
 
     /**
@@ -72,6 +97,7 @@ public class NuageToxique extends Objet implements Combattant, Deplacable {
      * @param taille
      */
     public NuageToxique(int taille) {
+        this.taille = taille;
         this.degAtt = generateurAleatoire.nextInt(100);
 
         this.listeCase = new ArrayList<>();
@@ -171,7 +197,7 @@ public class NuageToxique extends Objet implements Combattant, Deplacable {
     @Override
     public String creerSauvegarde() {
         String texte = String.format("%d ", this.degAtt);
-        texte += String.format("%d %d", this.listeCase.get(0).getX(), this.listeCase.get(0).getY());
+        texte += String.format("%d %d %d", this.listeCase.get(0).getX(), this.listeCase.get(0).getY(), this.taille);
         return "NuageToxique " + texte;
     }
 }
