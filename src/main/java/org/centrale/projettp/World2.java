@@ -318,7 +318,7 @@ public class World2 {
         listObjet.put(listObjet.size()+1,nuage);
         ArrayList<Point2D> cases_nuage = nuage.getListeCase();
         for (int i = 0; i < cases_nuage.size(); i++) {
-            if (cases_nuage.get(i).getX()>0 && cases_nuage.get(i).getX()<mondeLongueur && cases_nuage.get(i).getY()>0 && cases_nuage.get(i).getX()<mondeLargeur){
+            if (cases_nuage.get(i).getX()>0 && cases_nuage.get(i).getX()<mondeLongueur && cases_nuage.get(i).getY()>0 && cases_nuage.get(i).getY()<mondeLargeur){
                 tabObj[cases_nuage.get(i).getX()][cases_nuage.get(i).getY()].add(nuage) ;
             }
             
